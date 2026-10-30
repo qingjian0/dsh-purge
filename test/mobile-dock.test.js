@@ -73,3 +73,19 @@ test("窄屏默认几何：贴顶、底部只留 8px", () => {
   assert.ok(CLIENT.includes("const bottomClear = narrow ? 8 : DOCK_COMPOSER_CLEAR;"));
   assert.ok(CLIENT.includes("const DOCK_PHONE_BP = 560;"));
 });
+
+test("dock v2 视觉层存在，且排在 !important 主题层之后", () => {
+  const v2 = CLIENT.indexOf("dock v2 — 悬浮窗视觉重设计");
+  assert.ok(v2 > 0, "缺 v2 视觉层");
+  const themeLayer = CLIENT.indexOf('.dshp-dock[data-theme="dusk"]{background:');
+  assert.ok(themeLayer > 0 && v2 > themeLayer, "v2 必须在主题强制层之后才生效");
+  // 外壳靠同等特异性 + !important 压过主题层
+  assert.ok(CLIENT.includes('.dshp-dock[data-theme="white"],.dshp-dock[data-theme="dusk"]{border-radius:18px'));
+  // 分段式 tab：不再是下划线
+  assert.ok(CLIENT.includes(".dshp-dock .dshp-dock-tab.on{background:"));
+  assert.ok(CLIENT.includes("border-bottom-color:transparent!important"));
+  // 状态指示灯与胶囊按钮
+  assert.ok(CLIENT.includes('.dshp-dock .dshp-dock-head b::before{content:""'));
+  assert.ok(CLIENT.includes(".dshp-launch::before{content:\"\""));
+  assert.ok(CLIENT.includes("@keyframes dshp-dock-in"));
+});
