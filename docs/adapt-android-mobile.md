@@ -108,3 +108,72 @@ pnpm add https://codeload.github.com/qingjian0/dsh-purge/tar.gz/refs/heads/adapt
 - 插件自带：`/purge revert` 还原引擎原始文件（备份在 `$DSH_HOME/dsh-purge`），`/purge uninstall` 卸载并重启。
 - profile 侧：`pnpm remove dsh-purge` 后从 `package.json` 的 `dsh.bundle.bundles` 里去掉 `dsh-purge`。
 - 本次改动只落在插件自身文件，未改引擎里的任何 `@deepseek-ai/*` 源码。
+
+---
+
+## 悬浮窗（dock）移动端适配
+
+悬浮窗是 `client.js` 里的两个 fixed 层：清洗面板 `.dshp-dock` / 启动按钮 `.dshp-launch`，
+以及演练台 `.rt-dock`。它们在桌面浏览器上没问题，在手机 WebView 上有四个硬伤，本分支逐条修掉。
+
+### 1. 宽度被 380px 硬下限撑破
+
+`defaultDockGeom` / `clampDockGeom` 原来写死 `min-width:380`。360dp 手机可用宽度只有 `vw-16=344`，
+结果悬浮窗横向溢出、右侧按钮点不到。
+
+改成下限跟随视口（`dockMinSize`）：
+
+```js
+const minW = Math.max(240, Math.min(380, vw - 16));
+const minH = Math.max(200, Math.min(320, vh - 16));
+```
+
+| 视口 | minW | 实际默认宽 | 说明 |
+| --- | --- | --- | --- |
+| 360×640（手机） | 344 | 344（左右各 8px） | 原来会溢出 36px |
+| 412×915 | 380 | 396 | 维持原下限 |
+| 1280×800（桌面） | 380 | 620 | 行为不变 |
+
+窄屏默认几何也改了：`y` 从 48 降到 8，底部预留从 `DOCK_COMPOSER_CLEAR(172)` 降到 8
+（手机上输入框本来就由页面自己滚动，别让悬浮窗悬在半空）。
+
+### 2. 拖动 / 缩放只监听鼠标事件
+
+原来 5 个手柄（头部 + 左右下 + 右下角）都是 `onMouseDown` + `mousemove/mouseup`。
+手指按住拖动时，浏览器不会持续派发合成的 `mousemove`，拖到一半就断，还会顺手把页面滚走。
+
+改成 Pointer Events + 指针捕获（`trackDockPointer`）：
+
+- `onPointerDown` 绑定（dock 头部与 4 个手柄）；
+- `setPointerCapture` 后手指滑出面板也继续跟手；
+- `pointermove` 用 `{ passive: false }`，`pointerup` / `pointercancel` 都能收尾；
+- 手柄 CSS 本来就有 `touch-action:none`，滚动不会再抢事件。
+
+演练台 `.rt-dock` 是同一套问题，但它属于 `lib/redteam/client.js`（构建时注入 `client.js`
+的 `__DSH_PURGE_DRILL_BEGIN__` 段）。所以两边同步改：源码里的 `trackPointer` 换成 pointer 版，
+4 个手柄与 `.rt-head` 改 `onPointerDown`，再跑 `node scripts/build-client.mjs` 重建产物。
+源码与产物各有一条契约测试，谁被改回去都会红。
+
+### 3. 刘海屏 / 手势条遮挡
+
+新增媒体查询 `@media (max-width:560px),(pointer:coarse)`：
+
+- `.dshp-launch` 的 `bottom/right` 叠加 `env(safe-area-inset-bottom/right)`，不再压在系统手势条上；
+- 启动按钮高度 36 → 40、字号 14；dock 头部 `min-height:44px`、tab `min-height:42px`；
+- resize 手柄加宽（右下手柄 22 → 28）、左右 10 → 16、底部 10 → 18，手指好按；
+- `.dshp-dock` / `.rt-dock` 加 `max-height:calc(100dvh - 8px)`：移动浏览器地址栏收起时
+  `100vh` 会大于可视区，`dvh` 才是真高度；
+- 大面积 `backdrop-filter` 在低端 Android WebView 上很贵，移动端降到 `blur(10px)`；
+- 弹窗 `.dshp-auth-mask` / `.rt-modal` 的 padding 24 → 12，`.dshp-auth-modal` 限高
+  `calc(100dvh - 24px)`，`.dshp-auth-legal` 从固定 300px 高改成 `max-height:34vh`。
+
+### 4. 验证
+
+```
+node --test        → 54 passed / 0 failed（新增 5 条悬浮窗契约测试）
+```
+
+`test/mobile-dock.test.js` 钉住的东西：移动端样式块存在、无 `onMouseDown: start*` 残留、
+源码与产物都走 pointer、几何公式在 360/412/1280 三档视口的边界值、窄屏默认几何分支。
+
+改完需要重启宿主 + 刷新页面（`client.js` 是客户端 bundle，服务端重新分发后才生效）。

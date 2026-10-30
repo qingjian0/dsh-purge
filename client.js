@@ -1000,6 +1000,23 @@ body[data-ds-dark-theme] .dshp-restart-card .dshp-btn-primary,body[data-ds-dark-
 @media (max-width:640px){.dshp-metrics{grid-template-columns:1fr}.dshp-ruleitem{flex-wrap:wrap}.dshp-rule-ops{width:100%;justify-content:flex-end}}
 .dshp-root em,.dshp-dock em,.rt-flow-action.inferred,.rt-ap-act.inferred{font-style:normal}
 @media (prefers-reduced-motion:reduce){.dshp-btn,.dshp-bar>i,.dshp-flow-node{transition:opacity 300ms var(--dshp-ease)}.dshp-btn:hover:not(:disabled),.dshp-flow-node.is-cur{transform:none}.dshp-skel{animation:none}}
+/* [dsh-purge] mobile: safe-area, 100dvh, touch targets, lighter blur */
+@media (max-width:560px),(pointer:coarse){
+.dshp-dock{max-width:calc(100vw - 8px);max-height:calc(100dvh - 8px);border-radius:14px;backdrop-filter:blur(10px) saturate(1.2);-webkit-backdrop-filter:blur(10px) saturate(1.2)}
+.dshp-dock-head{min-height:44px;padding:10px 12px}
+.dshp-dock-head button{min-width:40px;min-height:36px;padding:0 10px}
+.dshp-dock-tab{padding:10px 12px;min-height:42px}
+.dshp-dock-body .dshp-root{padding:10px;gap:10px}
+.dshp-dock-resize{width:28px;height:28px}
+.dshp-dock-resize-l,.dshp-dock-resize-r{width:16px}
+.dshp-dock-resize-b{height:18px}
+.dshp-launch{bottom:calc(16px + env(safe-area-inset-bottom,0px));right:calc(16px + env(safe-area-inset-right,0px));height:40px;padding:0 16px;font-size:14px}
+.dshp-auth-mask,.rt-modal{padding:12px}
+.dshp-auth-modal{max-height:calc(100dvh - 24px)}
+.dshp-auth-legal{height:auto;max-height:34vh}
+.rt-dock{max-width:calc(100vw - 8px);max-height:calc(100dvh - 8px)}
+.rt-head{touch-action:none}
+}
 
 .dshp-dock{position:fixed;top:12px;right:12px;z-index:10050;display:flex;flex-direction:column;width:var(--dshp-dock-w,620px);height:var(--dshp-dock-h,72vh);min-width:380px;min-height:320px;max-width:calc(100vw - 16px);max-height:calc(100vh - 16px);box-sizing:border-box;background:color-mix(in srgb,var(--dsw-alias-bg-layer-1,var(--dshp-paper,#fffcf7)) 52%,transparent);backdrop-filter:blur(22px) saturate(1.35);-webkit-backdrop-filter:blur(22px) saturate(1.35);border:1px solid color-mix(in srgb,var(--dsw-alias-border-l1,var(--dshp-line,#555)) 65%,transparent);border-radius:12px;box-shadow:0 18px 48px color-mix(in srgb,#000 30%,transparent),0 0 0 1px color-mix(in srgb,#fff 6%,transparent);pointer-events:auto;color:var(--dsw-alias-label-primary,var(--dshp-ink,#f2f2f2));overflow:visible}
 .dshp-dock[data-open="0"]{display:none}
@@ -7672,15 +7689,23 @@ body[data-ds-dark-theme] .rt-scope-testing,.dshp-dock[data-theme="dusk"] .rt-sco
       }
 
       const trackPointer = (e, move) => {
-        if (e.button !== 0) return
-        e.preventDefault()
+        if (typeof e.button === 'number' && e.button !== 0) return
+        if (e.cancelable) e.preventDefault()
         e.stopPropagation()
-        const up = () => {
-          window.removeEventListener('mousemove', move)
-          window.removeEventListener('mouseup', up)
+        const id = e.pointerId
+        const el = e.currentTarget
+        /* 手机上没有持续 mousemove：统一 pointer + 捕获，松手与被打断都能收尾。 */
+        const stop = (ev) => {
+          if (ev && ev.pointerId != null && id != null && ev.pointerId !== id) return
+          window.removeEventListener('pointermove', move)
+          window.removeEventListener('pointerup', stop)
+          window.removeEventListener('pointercancel', stop)
+          try { if (el && el.releasePointerCapture && id != null) el.releasePointerCapture(id) } catch (err) { /* 非指针事件 */ }
         }
-        window.addEventListener('mousemove', move)
-        window.addEventListener('mouseup', up)
+        try { if (el && el.setPointerCapture && id != null) el.setPointerCapture(id) } catch (err) { /* 非指针事件 */ }
+        window.addEventListener('pointermove', move, { passive: false })
+        window.addEventListener('pointerup', stop)
+        window.addEventListener('pointercancel', stop)
       }
       const startDrag = (e) => {
         if (e.target && e.target.closest && e.target.closest('button,a,input,select,textarea,label')) return
@@ -7837,11 +7862,11 @@ body[data-ds-dark-theme] .rt-scope-testing,.dshp-dock[data-theme="dusk"] .rt-sco
             }
 
       return h('div', shellProps,
-        (full || embedded) ? null : h('div', { className: 'rt-grip', title: '拖动调整宽度', onMouseDown: startResizeLeft }),
-        (full || embedded) ? null : h('div', { className: 'rt-resize-r', title: '拖动调整宽度', onMouseDown: startResizeRight }),
-        (full || embedded) ? null : h('div', { className: 'rt-resize-b', title: '拖动调整高度', onMouseDown: startResizeBottom }),
-        (full || embedded) ? null : h('div', { className: 'rt-resize-c', title: '拖动调整大小', onMouseDown: startResizeCorner }),
-        h('div', { className: 'rt-head', onMouseDown: (full || embedded) ? undefined : startDrag, title: (full || embedded) ? undefined : '按住拖动面板' },
+        (full || embedded) ? null : h('div', { className: 'rt-grip', title: '拖动调整宽度', onPointerDown: startResizeLeft }),
+        (full || embedded) ? null : h('div', { className: 'rt-resize-r', title: '拖动调整宽度', onPointerDown: startResizeRight }),
+        (full || embedded) ? null : h('div', { className: 'rt-resize-b', title: '拖动调整高度', onPointerDown: startResizeBottom }),
+        (full || embedded) ? null : h('div', { className: 'rt-resize-c', title: '拖动调整大小', onPointerDown: startResizeCorner }),
+        h('div', { className: 'rt-head', onPointerDown: (full || embedded) ? undefined : startDrag, title: (full || embedded) ? undefined : '按住拖动面板' },
           embedded ? null : h('div', { className: 'rt-title' }, h('span', { className: 'rt-dot' }),
             full ? '演练台 · 全面浏览' : '演练台',
             full ? h('span', { className: 'rt-tag', style: { marginLeft: 6 } }, '独立窗口') : null),
@@ -8073,19 +8098,37 @@ body[data-ds-dark-theme] .rt-scope-testing,.dshp-dock[data-theme="dusk"] .rt-sco
 		const DOCK_GEOM_KEY = "dsh-purge-dock-geom-v4";
 		/* 默认停在右上，底边留在输入框上面。拖动之后停在用户松开的位置，只保证不拖出窗口。 */
 		const DOCK_COMPOSER_CLEAR = 172;
-		function defaultDockGeom() {
+		const DOCK_PHONE_BP = 560;
+		/* 手机竖屏 360dp 时 380 的硬下限会横向溢出：下限跟着视口收缩，桌面维持原值。 */
+		function dockMinSize(vw, vh) {
+			const minW = Math.max(240, Math.min(380, vw - 16));
+			const minH = Math.max(200, Math.min(320, vh - 16));
+			return { minW: minW, minH: minH };
+		}
+		function dockViewport() {
 			const vw = typeof window !== "undefined" ? window.innerWidth : 1280;
 			const vh = typeof window !== "undefined" ? window.innerHeight : 800;
-			const w = Math.min(620, Math.max(380, vw - 16));
-			const y = 48;
-			const h = Math.max(240, Math.min(640, vh - y - DOCK_COMPOSER_CLEAR));
+			return { vw: vw || 1280, vh: vh || 800 };
+		}
+		function isNarrowDock(vw) {
+			return vw <= DOCK_PHONE_BP;
+		}
+		function defaultDockGeom() {
+			const { vw, vh } = dockViewport();
+			const { minW } = dockMinSize(vw, vh);
+			const narrow = isNarrowDock(vw);
+			const w = Math.min(620, Math.max(minW, vw - 16));
+			// 窄屏贴顶，底部只留 8px：手机上输入框由页面自己滚动，别让悬浮窗悬在半空。
+			const y = narrow ? 8 : 48;
+			const bottomClear = narrow ? 8 : DOCK_COMPOSER_CLEAR;
+			const h = Math.max(200, Math.min(640, vh - y - bottomClear));
 			return { x: Math.max(8, vw - w - 8), y: y, w: w, h: h };
 		}
 		function clampDockGeom(g) {
-			const vw = typeof window !== "undefined" ? window.innerWidth : 1280;
-			const vh = typeof window !== "undefined" ? window.innerHeight : 800;
-			const w = Math.min(Math.max(380, Number(g && g.w) || 620), Math.max(380, vw - 16));
-			const h = Math.min(Math.max(240, Number(g && g.h) || 520), Math.max(240, vh - 16));
+			const { vw, vh } = dockViewport();
+			const { minW, minH } = dockMinSize(vw, vh);
+			const w = Math.min(Math.max(minW, Number(g && g.w) || 620), Math.max(minW, vw - 16));
+			const h = Math.min(Math.max(minH, Number(g && g.h) || 520), Math.max(minH, vh - 16));
 			const x = Math.min(Math.max(8, Number(g && g.x) || 8), Math.max(8, vw - w - 8));
 			const y = Math.min(Math.max(8, Number(g && g.y) || 8), Math.max(8, vh - Math.min(h, vh - 16) - 8));
 			return { x: x, y: y, w: w, h: h };
@@ -8649,83 +8692,61 @@ body[data-ds-dark-theme] .rt-scope-testing,.dshp-dock[data-theme="dusk"] .rt-sco
 				if (id === "drill") { requestDrill("tab"); return; }
 				setDock({ tab: "clean", authOpen: false, pending: "tab" });
 			};
+			/* 触摸与鼠标统一走 Pointer Events：手机上合成的 mousemove 不可靠，拖到一半就断。 */
+			const trackDockPointer = (e, move) => {
+				if (typeof e.button === "number" && e.button !== 0) return;
+				if (e.cancelable) e.preventDefault();
+				e.stopPropagation();
+				const id = e.pointerId;
+				const el = e.currentTarget;
+				const release = () => {
+					try { if (el && el.releasePointerCapture && id != null) el.releasePointerCapture(id); } catch { /* 非指针事件 */ }
+				};
+				const stop = (ev) => {
+					if (ev && ev.pointerId != null && id != null && ev.pointerId !== id) return;
+					window.removeEventListener("pointermove", move);
+					window.removeEventListener("pointerup", stop);
+					window.removeEventListener("pointercancel", stop);
+					release();
+				};
+				try { if (el && el.setPointerCapture && id != null) el.setPointerCapture(id); } catch { /* 非指针事件 */ }
+				window.addEventListener("pointermove", move, { passive: false });
+				window.addEventListener("pointerup", stop);
+				window.addEventListener("pointercancel", stop);
+			};
 			const startDrag = (e) => {
-				if (e.button !== 0) return;
 				if (e.target && e.target.closest && e.target.closest("button,a,input,select,textarea,label")) return;
-				e.preventDefault();
 				const sx = e.clientX;
 				const sy = e.clientY;
 				const ox = geom.x;
 				const oy = geom.y;
-				const move = (ev) => setGeom((g) => clampDockGeom({ x: ox + (ev.clientX - sx), y: oy + (ev.clientY - sy), w: g.w, h: g.h }));
-				const up = () => {
-					window.removeEventListener("mousemove", move);
-					window.removeEventListener("mouseup", up);
-				};
-				window.addEventListener("mousemove", move);
-				window.addEventListener("mouseup", up);
+				trackDockPointer(e, (ev) => setGeom((g) => clampDockGeom({ x: ox + (ev.clientX - sx), y: oy + (ev.clientY - sy), w: g.w, h: g.h })));
 			};
 			const startResize = (e) => {
-				if (e.button !== 0) return;
-				e.preventDefault();
-				e.stopPropagation();
 				const sx = e.clientX;
 				const sy = e.clientY;
 				const ow = geom.w;
 				const oh = geom.h;
-				const move = (ev) => setGeom((g) => clampDockGeom({ x: g.x, y: g.y, w: ow + (ev.clientX - sx), h: oh + (ev.clientY - sy) }));
-				const up = () => {
-					window.removeEventListener("mousemove", move);
-					window.removeEventListener("mouseup", up);
-				};
-				window.addEventListener("mousemove", move);
-				window.addEventListener("mouseup", up);
+				trackDockPointer(e, (ev) => setGeom((g) => clampDockGeom({ x: g.x, y: g.y, w: ow + (ev.clientX - sx), h: oh + (ev.clientY - sy) })));
 			};
 			const startResizeLeft = (e) => {
-				if (e.button !== 0) return;
-				e.preventDefault();
-				e.stopPropagation();
 				const sx = e.clientX;
 				const ox = geom.x;
 				const ow = geom.w;
-				const move = (ev) => {
+				trackDockPointer(e, (ev) => {
 					const dx = ev.clientX - sx;
 					setGeom((g) => clampDockGeom({ x: ox + dx, y: g.y, w: ow - dx, h: g.h }));
-				};
-				const up = () => {
-					window.removeEventListener("mousemove", move);
-					window.removeEventListener("mouseup", up);
-				};
-				window.addEventListener("mousemove", move);
-				window.addEventListener("mouseup", up);
+				});
 			};
 			const startResizeRight = (e) => {
-				if (e.button !== 0) return;
-				e.preventDefault();
-				e.stopPropagation();
 				const sx = e.clientX;
 				const ow = geom.w;
-				const move = (ev) => setGeom((g) => clampDockGeom({ x: g.x, y: g.y, w: ow + (ev.clientX - sx), h: g.h }));
-				const up = () => {
-					window.removeEventListener("mousemove", move);
-					window.removeEventListener("mouseup", up);
-				};
-				window.addEventListener("mousemove", move);
-				window.addEventListener("mouseup", up);
+				trackDockPointer(e, (ev) => setGeom((g) => clampDockGeom({ x: g.x, y: g.y, w: ow + (ev.clientX - sx), h: g.h })));
 			};
 			const startResizeBottom = (e) => {
-				if (e.button !== 0) return;
-				e.preventDefault();
-				e.stopPropagation();
 				const sy = e.clientY;
 				const oh = geom.h;
-				const move = (ev) => setGeom((g) => clampDockGeom({ x: g.x, y: g.y, w: g.w, h: oh + (ev.clientY - sy) }));
-				const up = () => {
-					window.removeEventListener("mousemove", move);
-					window.removeEventListener("mouseup", up);
-				};
-				window.addEventListener("mousemove", move);
-				window.addEventListener("mouseup", up);
+				trackDockPointer(e, (ev) => setGeom((g) => clampDockGeom({ x: g.x, y: g.y, w: g.w, h: oh + (ev.clientY - sy) })));
 			};
 			const body = st.tab === "clean"
 				? h(SettingsRoot, { t })
@@ -8745,7 +8766,7 @@ body[data-ds-dark-theme] .rt-scope-testing,.dshp-dock[data-theme="dusk"] .rt-sco
 					height: geom.h + "px",
 				},
 			},
-				h("div", { className: "dshp-dock-head", onMouseDown: startDrag, title: "Drag to move the panel" },
+				h("div", { className: "dshp-dock-head", onPointerDown: startDrag, title: "Drag to move the panel" },
 					h("b", null, "dsh-purge"),
 					h("span", { style: { flex: 1 } }),
 					st.tab === "drill" && readDrillAuth()
@@ -8770,10 +8791,10 @@ body[data-ds-dark-theme] .rt-scope-testing,.dshp-dock[data-theme="dusk"] .rt-sco
 					}, t("dock.drill") + (readDrillAuth() ? "" : " · " + t("dock.unauthorized"))),
 				),
 				h("div", { className: "dshp-dock-body" }, body),
-				h("div", { className: "dshp-dock-resize-l", title: "Drag to resize width", onMouseDown: startResizeLeft }),
-				h("div", { className: "dshp-dock-resize-r", title: "Drag to resize width", onMouseDown: startResizeRight }),
-				h("div", { className: "dshp-dock-resize-b", title: "Drag to resize height", onMouseDown: startResizeBottom }),
-				h("div", { className: "dshp-dock-resize", title: "Drag to resize", onMouseDown: startResize }),
+				h("div", { className: "dshp-dock-resize-l", title: "Drag to resize width", onPointerDown: startResizeLeft }),
+				h("div", { className: "dshp-dock-resize-r", title: "Drag to resize width", onPointerDown: startResizeRight }),
+				h("div", { className: "dshp-dock-resize-b", title: "Drag to resize height", onPointerDown: startResizeBottom }),
+				h("div", { className: "dshp-dock-resize", title: "Drag to resize", onPointerDown: startResize }),
 			);
 			let portal = null;
 			let authPortal = null;
