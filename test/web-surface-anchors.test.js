@@ -45,3 +45,17 @@ test("旧版 ${webUrl} 文案仍照旧命中，不回归", () => {
   const out53 = applyReplacementsToText(out32, patch(53), "web-app-lib.js").text;
   assert.ok(out53.includes("Local web GUI: ${webUrl}."));
 });
+
+test("#32 在 #53 收尾后仍能被判定为已完成（合并展示不误报 skipped）", () => {
+  let text = applyReplacementsToText(NEW_SURFACE, patch(32), "dev-context.js").text;
+  text = applyReplacementsToText(text, patch(53), "dev-context.js").text;
+  const hitAny = (patch(32).markers ?? []).some((m) => text.includes(m));
+  assert.ok(hitAny, "#32 的 marker 必须覆盖 #53 的终态，否则状态显示 skipped");
+});
+
+test("旧版链路同样不误报", () => {
+  let text = applyReplacementsToText(LEGACY_SURFACE, patch(32), "web-app-lib.js").text;
+  text = applyReplacementsToText(text, patch(53), "web-app-lib.js").text;
+  const hitAny = (patch(32).markers ?? []).some((m) => text.includes(m));
+  assert.ok(hitAny);
+});

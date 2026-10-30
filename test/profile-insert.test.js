@@ -12,8 +12,11 @@ import {
   ensurePnpmAllowBuild,
 } from "../lib/profile-insert.js";
 
-const MASTER_URL = "https://codeload.github.com/YuJunZhiXue/dsh-purge/tar.gz/refs/heads/master";
-const COMMIT_URL = "https://codeload.github.com/YuJunZhiXue/dsh-purge/tar.gz/abc1234567890";
+// 从 package.json 取当前打包地址：二开分支换了 fork 分支，测试不用跟着改。
+// 分支名可能带斜杠（adapt/android-mobile），固定 commit 的假 URL 直接按前缀拼。
+const PKG = JSON.parse(fs.readFileSync(new URL("../package.json", import.meta.url), "utf8"));
+const MASTER_URL = PKG.dsh.install.tarball;
+const COMMIT_URL = MASTER_URL.replace(/\/tar\.gz.*$/, "/tar.gz/abc1234567890");
 
 function withTempProfile(lockText) {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), "dsh-purge-test-"));
@@ -150,7 +153,7 @@ test("lock 读不到（旧 master 记录 / 无文件）退回 package.json tarba
     "  .:",
     "    dependencies:",
     "      dsh-purge:",
-    "        specifier: https://codeload.github.com/YuJunZhiXue/dsh-purge/tar.gz/refs/heads/master",
+    "        specifier: " + MASTER_URL,
     "        version: '1.1.81'",
     "",
   ].join("\n"));
