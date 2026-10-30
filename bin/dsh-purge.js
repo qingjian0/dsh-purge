@@ -5,6 +5,11 @@ import * as rules from "../lib/rules.js";
 
 const args = process.argv.slice(2);
 
+function shimLabel(value) {
+  // Android 没有 shim 层，报「不适用」而不是「missing」，避免看起来像坏掉。
+  return value === "na" ? "不适用/n-a" : value;
+}
+
 function printStatus(state) {
   const out = [];
   out.push("dsh-purge 状态 / Status");
@@ -19,7 +24,7 @@ function printStatus(state) {
   } else {
     out.push("  插件根 / root  " + core.missingAiBaseMessage());
   }
-  out.push(`  shim 目录      ${state.shim_dir || "未定位 / not found"}`);
+  out.push(`  shim 目录      ${core.isShimApplicable() ? (state.shim_dir || "未定位 / not found") : "不适用（Android 无 shim） / n/a (android)"}`);
   out.push(`  备份 / backup  ${state.has_backup ? "有 / yes" : "无 / no"}`);
   out.push(`  注入文件       ${state.override_path}`);
   out.push(`  注入状态       ${state.override_status}`);
@@ -31,7 +36,7 @@ function printStatus(state) {
     out.push(`    ${mark} [#${String(p.id).padEnd(2)}] ${p.name.padEnd(30)} ${p.layer}/${p.layer_en} — ${s}`);
   }
   out.push("");
-  out.push(`  shim: dsh.cmd=${state.shim_cmd}  dsh.ps1=${state.shim_ps1}  dsh=${state.shim_bin}`);
+  out.push(`  shim: dsh.cmd=${shimLabel(state.shim_cmd)}  dsh.ps1=${shimLabel(state.shim_ps1)}  dsh=${shimLabel(state.shim_bin)}`);
   return out.join("\n");
 }
 

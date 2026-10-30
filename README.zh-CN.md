@@ -133,6 +133,13 @@ Harness 不只是把问题交给模型。它还会在运行时改提示词、审
 
 ## 适配范围
 
+> **本仓库为二开分支：`adapt/android-mobile`**（基于上游 1.1.82，署名见下文「署名要求」）。
+> 面向 **Android 引擎 / Termux 内嵌 node** 与 **0.2.1-rc.2 新文案布局**：
+> 新增 `isAndroidHost` / `shimApplicable`（Android 无 dsh shim，状态记为「不适用」而非缺失）、
+> 补丁 `#32` / `#53` 跟进 `dsh-harness-dev-context` 的文件搬家、
+> `#77` 跟进 `append(record)` 新锚点、Android 用 `am` / `termux-open` 打开浏览器。
+> 细节与验证结果见 [`docs/adapt-android-mobile.md`](docs/adapt-android-mobile.md)。
+
 **1.1.81 已适配 DSH 0.2.1-rc.2**，0.2.0 仍可用。不要拿它去打 0.1.x。
 
 - **dsh 0.2.1-rc.2**（官方桌面 / 官方 `dsh web`）：用 **1.1.81**。已修 `{{cwd}}` / `[cwd]` 整轮失败、补丁 #40 命中、`toolFilter` 废弃、`dsh-tools` 解析、hostFs fd、桌面换包自杀、`file:` 归档更新、Ctrl+Enter 插话。
