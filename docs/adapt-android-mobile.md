@@ -177,3 +177,20 @@ node --test        → 54 passed / 0 failed（新增 5 条悬浮窗契约测试�
 源码与产物都走 pointer、几何公式在 360/412/1280 三档视口的边界值、窄屏默认几何分支。
 
 改完需要重启宿主 + 刷新页面（`client.js` 是客户端 bundle，服务端重新分发后才生效）。
+
+---
+
+## 升级时的一个顺序坑（pnpm 12）
+
+`pnpm add <新提交 tarball>` 时，`postinstall` 里的 `ensurePnpmAllowBuild` 读的是**上一版** lock，
+于是 `allowBuilds` 会落后一个提交，下一次 `pnpm install` 就报 `ERR_PNPM_IGNORED_BUILDS`。
+
+撞到就这么收尾（不用改任何配置）：
+
+```sh
+cd "$HOME/profiles/web"
+INIT_CWD="$PWD" node node_modules/dsh-purge/scripts/ensure-profile-bundle.mjs
+pnpm install          # 这次不再报 ignored builds，allowBuilds 收敛到当前提交
+```
+
+判据：`pnpm-workspace.yaml` 的 `allowBuilds` 里那个 URL 必须等于 `package.json` 依赖里那个。
