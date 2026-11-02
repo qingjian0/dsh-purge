@@ -1264,6 +1264,8 @@ body[data-ds-dark-theme] .dshp-dock-body .rt-btn-primary,
   .dshp-workspace-main{grid-row:1;min-height:0}
   .dshp-workspace-nav{grid-row:2;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-rows:minmax(44px,auto);gap:4px;overflow:visible;padding:6px 8px calc(6px + env(safe-area-inset-bottom,0px));border-right:0;border-top:1px solid var(--dshp-line);border-bottom:0}
   .dshp-workspace-nav-item{width:100%;min-width:0;min-height:44px;justify-content:center;padding:4px 3px;font-size:12px;line-height:16px;white-space:normal;text-align:center}
+  .dshp-workspace-nav-item:nth-last-child(2){grid-column:2}
+  .dshp-workspace-nav-item:last-child{grid-column:3}
   .dshp-workspace-header{padding:12px 14px}
   .dshp-workspace-header h2{font-size:18px}
   .dshp-workspace-content{padding:12px 10px}
