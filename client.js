@@ -1557,7 +1557,7 @@ body:has(.dshp-root[data-theme="dusk"]) .dshp-modal-bg,
  .dshp-dock-body .dshp-dock-tab{padding:7px 6px;font-size:11px}
 }
 @media (max-width:599px){
- .dshp-dock{width:var(--dshp-dock-w,60vw)!important;height:min(var(--dshp-dock-h,72dvh),720px)!important;min-width:min(240px,calc(100vw - 16px))!important;min-height:260px!important;max-width:calc(100vw - 16px)!important;max-height:calc(100dvh - 24px)!important;border:1px solid var(--dshp-line)!important;border-radius:14px!important}
+ .dshp-dock{width:var(--dshp-dock-w,60vw)!important;height:min(var(--dshp-dock-h,72dvh),720px)!important;min-width:min(240px,calc(100vw - 16px))!important;min-height:min(260px,calc(100dvh - 24px))!important;max-width:calc(100vw - 16px)!important;max-height:calc(100dvh - 24px)!important;border:1px solid var(--dshp-line)!important;border-radius:14px!important}
  .dshp-dock-head{padding:8px 10px;min-height:42px}
  .dshp-dock-body .dshp-btn,.dshp-dock-body button{min-height:36px}
  .dshp-dock-resize,.dshp-dock-resize-l,.dshp-dock-resize-r,.dshp-dock-resize-b{display:block!important;opacity:.45}
