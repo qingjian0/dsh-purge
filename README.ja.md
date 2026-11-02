@@ -58,7 +58,7 @@
 
 ## これは何か
 
-**dsh-purge** は、お使いのマシンにインストール済みの公式 [DeepSeek Harness](https://www.deepseek.com/harness/) 向けサイバーセキュリティ・レッドチームプラグインです。この fork のプレビュー版は **1.1.88** です。以下の対応表は upstream の互換性基準を引き継いでおり、**DSH 0.2.1-rc.2**（0.2.0 も動作すると記載）を基準とします。**DSH 0.2.1-rc.3 以降の RC はサポート対象として記載されていません。** この fork の UI 変更は、すべてのホスト版で実機検証されていません。公式 **Web**（`dsh web`）と公式 **デスクトップ EXE** は別々にインストール・適用します。
+**dsh-purge** は、お使いのマシンにインストール済みの公式 [DeepSeek Harness](https://www.deepseek.com/harness/) 向けサイバーセキュリティ・レッドチームプラグインです。この fork のプレビュー版は **1.1.88** です。以下の対応表は upstream の互換性基準を引き継いでおり、**DSH 0.2.1-rc.2**（0.2.0 も動作すると記載）を基準とします。**DSH 0.2.1-rc.3 以降の RC はサポート対象として記載されていません。** レスポンシブ UI の更新を反映していますが、各ホストでの実行時検証と Android 実機での表示回帰テストは未完了です。公式 **Web**（`dsh web`）と公式 **デスクトップ EXE** は別々にインストール・適用します。
 
 Harness は単にプロンプトを転送するだけではありません。プロンプトの書き換え、承認ゲート、サンドボックスポリシー、セッション移行を実行時に行います。「モデルは答えるか」だけを問うと、ホスト層のブロックをモデルの拒否と取り違えてしまいます。このプラグインは、あなた自身のインストール環境でこの 2 つの層を分離し、制御された評価や、どのデフォルトポリシーが過度に厳しいかを確認するために使います。
 
@@ -145,7 +145,7 @@ Harness は単にプロンプトを転送するだけではありません。プ
 
 ## インストール
 
-**現在の fork 開発プレビュー:** 以下のコマンドは保守中の `adapt/android-mobile-upstream-1.1.88` ブランチからインストールします。ブランチのアーカイブはコミットにより変わるため、固定リリースではありません。
+**現在のリポジトリ版:** 以下のコマンドは `master` ブランチの最新コードをインストールします。ブランチアーカイブはコミットごとに変わるため、固定バージョンのリリースではありません。
 
 ### 推奨: DSH CLI
 
@@ -153,10 +153,10 @@ Harness は単にプロンプトを転送するだけではありません。プ
 
 ```sh
 # 公式 Web
-dsh plugin --profile web add https://codeload.github.com/qingjian0/dsh-purge/tar.gz/refs/heads/adapt/android-mobile-upstream-1.1.88
+dsh plugin --profile web add https://codeload.github.com/qingjian0/dsh-purge/tar.gz/refs/heads/master
 
 # 公式デスクトップ
-dsh plugin --profile desktop add https://codeload.github.com/qingjian0/dsh-purge/tar.gz/refs/heads/adapt/android-mobile-upstream-1.1.88
+dsh plugin --profile desktop add https://codeload.github.com/qingjian0/dsh-purge/tar.gz/refs/heads/master
 ```
 
 ### 代替: pnpm
@@ -165,14 +165,14 @@ DSH CLI が使えない場合のみ、選択した profile 内で実行します
 
 ```sh
 cd "$DSH_HOME/profiles/web"   # desktop: profiles/desktop
-pnpm add --allow-build=dsh-purge https://codeload.github.com/qingjian0/dsh-purge/tar.gz/refs/heads/adapt/android-mobile-upstream-1.1.88
+pnpm add --allow-build=dsh-purge https://codeload.github.com/qingjian0/dsh-purge/tar.gz/refs/heads/master
 ```
 
 Windows PowerShell:
 
 ```powershell
 cd "$env:USERPROFILE\.dsh\profiles\web"   # desktop: profiles\desktop
-pnpm add --allow-build=dsh-purge "https://codeload.github.com/qingjian0/dsh-purge/tar.gz/refs/heads/adapt/android-mobile-upstream-1.1.88"
+pnpm add --allow-build=dsh-purge "https://codeload.github.com/qingjian0/dsh-purge/tar.gz/refs/heads/master"
 ```
 
 インストールフックは選択した profile にプラグインを登録し、Cordis の body insert を確認します。pnpm がビルドスクリプトを既定でブロックする場合、`--allow-build=dsh-purge` はこのパッケージだけを許可します。
@@ -204,7 +204,7 @@ pnpm が install hook をブロックした場合は、`--allow-build=dsh-purge`
 
 ## プレビュー
 
-**dsh-purge** はセッションタイトルの横にあります。右ドックを開き、**Clean** と **Drill** の 2 ページがあります。**Light / Ink** を切り替えられます。パッチはグループ化され、カウントには実際に適用された項目のみが含まれます。ルールセットはエディタの上の一覧にあり、各行に Enable と Delete があります。
+**dsh-purge** はセッションタイトルの横にあり、右ドックから **Clean** と **Drill** の 2 ページを開けます。Clean ワークスペースには **Overview、Clean、Prompt、Rules、Updates** の 5 セクションがあります。狭い画面では複数行のコンパクトなナビゲーション、単一列レイアウト、折り返し可能なカードとフォーム、タッチ操作向けコントロールを使用します。複雑な表やレッドチームの証拠一覧は列を無理に縮めず、横スクロールを維持します。Dock は独立したコンパクトレイアウトです。**Light / Ink** を切り替えられます。パッチはグループ化され、カウントには実際に適用された項目のみが含まれます。ルールセットはエディタの上の一覧にあり、各行に Enable と Delete があります。
 
 Drill を初めて開くときは、通知を読み、カウントダウンを待ち、末尾までスクロールして 3 つのチェックボックスにチェックします。Clean にこのステップは不要です。Drill は、あなたが管理するホスト、オフラインターゲット、またはすでに書面による認可のある演習にのみ使えます。
 
