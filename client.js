@@ -1409,6 +1409,19 @@ body[data-ds-dark-theme] .dshp-auth-mask,body[data-ds-dark-theme] .dshp-restart-
   .dshp-rules-host .dshp-editor .dshp-area{min-height:44vh;font-size:16px}
 }
 
+/* Keyboard and focus states for rule, workspace, and scope controls. */
+.dshp-rules-host .dshp-ruleitem:focus-visible,
+.dshp-rules-host .dshp-cwd-item:focus-within{
+  outline:2px solid var(--dshp-accent);outline-offset:-2px;
+}
+.dshp-rules-host .dshp-editor .dshp-field:focus-visible,
+.dshp-rules-host .dshp-editor .dshp-area:focus-visible,
+.dshp-rules-host .dshp-create-row .dshp-field:focus-visible,
+.dshp-rules-host .dshp-policy-row .dshp-field:focus-visible{
+  outline:2px solid var(--dshp-accent);outline-offset:1px;border-color:var(--dshp-accent);
+}
+.dshp-workspace-nav-item:focus-visible{outline:2px solid var(--dshp-accent);outline-offset:2px}
+
 `;
 
 		function formatSize(bytes) {
