@@ -4620,6 +4620,45 @@ body[data-ds-dark-theme] .rt-dock,body[data-ds-dark-theme] .rt-full,.dshp-dock[d
   .rt-full>.rt-body{grid-column:2;grid-row:2;max-width:none;width:100%;margin:0;min-height:0}
   .rt-full>.rt-foot{grid-column:1/-1;grid-row:3}
 }
+/* Freshwater completion: opaque M3 surfaces also apply to standalone/full-window mode. */
+.rt-dock,.rt-full{
+  backdrop-filter:none!important;-webkit-backdrop-filter:none!important;
+  box-shadow:none!important;
+}
+.rt-dock .rt-card,.rt-full .rt-card,
+.rt-dock .rt-sess,.rt-full .rt-sess,
+.rt-dock .rt-hit,.rt-full .rt-hit,
+.rt-dock .rt-cred,.rt-full .rt-cred,
+.rt-dock .rt-evi,.rt-full .rt-evi,
+.rt-dock .rt-kb,.rt-full .rt-kb,
+.rt-dock .rt-rep,.rt-full .rt-rep,
+.rt-dock .rt-flow-node,.rt-full .rt-flow-node,
+.rt-dock .rt-hcol,.rt-full .rt-hcol,
+.rt-dock .rt-ap-hit,.rt-full .rt-ap-hit,
+.rt-dock .rt-modal-box,.rt-full .rt-modal-box{
+  background:var(--rt-paper)!important;border-color:var(--rt-line)!important;
+  color:var(--rt-ink)!important;box-shadow:none!important;
+  backdrop-filter:none!important;-webkit-backdrop-filter:none!important;
+}
+.rt-dock .rt-btn,.rt-full .rt-btn,
+.rt-dock .rt-input,.rt-full .rt-input,
+.rt-dock .rt-eng-select,.rt-full .rt-eng-select,
+.rt-dock .rt-textarea,.rt-full .rt-textarea,
+.rt-dock .rt-code,.rt-full .rt-code,
+.rt-dock .rt-evi-body,.rt-full .rt-evi-body,
+.rt-dock .rt-rep-http,.rt-full .rt-rep-http{
+  backdrop-filter:none!important;-webkit-backdrop-filter:none!important;
+}
+.rt-dock .rt-row.head,.rt-full .rt-row.head,
+.rt-dock .rt-score-row.head,.rt-full .rt-score-row.head,
+.rt-dock .rt-vrow.head,.rt-full .rt-vrow.head{
+  backdrop-filter:none!important;-webkit-backdrop-filter:none!important;
+}
+@media (max-width:599px){
+  .rt-dock .rt-score-row,.rt-full .rt-score-row{min-width:520px}
+  .rt-dock .rt-table,.rt-full .rt-table{overflow-x:auto;overscroll-behavior-x:contain}
+}
+
 
 `    /* ---------------------------------------------------------- 桥接与状态 */
     /** 是否在「全面浏览」独立窗口里（URL hash 标记，复用同一套界面代码）。 */
