@@ -1358,6 +1358,23 @@ body[data-ds-dark-theme] .rt-rep-step-no,.dshp-dock[data-theme="dusk"] .rt-rep-s
   .dshp-auth-modal,.dshp-restart-card,.dshp-modal{border-radius:16px!important}
 }
 
+/* Portaled dialogs do not inherit workspace tokens; establish their own host-aware scheme. */
+.dshp-auth-mask,.dshp-restart-mask,.dshp-modal-bg{
+  --dshp-paper:#FFFFFF;--dshp-bg:#F3F5F3;--dshp-ink:#18343B;--dshp-mute:#52676D;
+  --dshp-line:#D3E0E3;--dshp-fill:#E7F0F2;--dshp-accent:#315D67;--dshp-accent-soft:#D9E9F2;--dshp-glass:none;
+}
+body[data-ds-dark-theme] .dshp-auth-mask,body[data-ds-dark-theme] .dshp-restart-mask,body[data-ds-dark-theme] .dshp-modal-bg,
+.dshp-restart-mask[data-theme="dusk"]{
+  --dshp-paper:#1A2D33;--dshp-bg:#101F24;--dshp-ink:#E3F0F1;--dshp-mute:#A9BEC2;
+  --dshp-line:#365159;--dshp-fill:#233C43;--dshp-accent:#B9E4D2;--dshp-accent-soft:#294A50;
+}
+.dshp-auth-mask .dshp-auth-modal,.dshp-restart-mask .dshp-restart-card,.dshp-modal-bg .dshp-modal{
+  background:var(--dshp-paper)!important;color:var(--dshp-ink)!important;border-color:var(--dshp-line)!important;
+  box-shadow:0 12px 32px rgba(20,48,56,.14)!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;
+}
+.dshp-auth-mask .dshp-auth-legal{background:var(--dshp-bg)!important;color:var(--dshp-ink)!important;border-color:var(--dshp-line)!important}
+.dshp-auth-mask .dshp-auth-warn{background:var(--dshp-accent-soft)!important;color:var(--dshp-ink)!important}
+
 `;
 
 		function formatSize(bytes) {
