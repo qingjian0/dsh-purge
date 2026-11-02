@@ -1442,8 +1442,9 @@ body[data-ds-dark-theme] .dshp-auth-mask,body[data-ds-dark-theme] .dshp-restart-
   .dshp-rules-host .dshp-policy-row{align-items:stretch;flex-direction:column}
   .dshp-rules-host .dshp-policy-row .dshp-field{width:100%;min-width:0}
   .dshp-rules-host .dshp-create-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
-  .dshp-rules-host .dshp-create-row .dshp-field{width:100%;min-width:0;grid-column:1/-1}
-  .dshp-rules-host .dshp-create-row .dshp-btn{min-height:48px}
+  .dshp-rules-host .dshp-create-row .dshp-field{width:100%;min-width:0;grid-column:auto}
+  .dshp-rules-host .dshp-create-row select{grid-column:1;min-width:0!important}
+  .dshp-rules-host .dshp-create-row .dshp-btn{grid-column:2;min-height:48px}
   .dshp-rules-host .dshp-ruleitem{align-items:flex-start;flex-wrap:wrap}
   .dshp-rules-host .dshp-rule-ops{width:100%;justify-content:flex-end}
   .dshp-rules-host .dshp-editor{min-height:360px;padding:10px}
