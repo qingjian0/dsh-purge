@@ -1415,6 +1415,12 @@ body[data-ds-dark-theme] .dshp-auth-mask,body[data-ds-dark-theme] .dshp-restart-
 }
 .dshp-workspace-nav-item:focus-visible{outline:2px solid var(--dshp-accent);outline-offset:2px}
 
+
+/* Consistent keyboard focus for every Purge workspace and dock control. */
+.dshp-root :is(button,[role="button"],input,select,textarea):focus-visible,
+.dshp-dock :is(button,[role="button"],input,select,textarea):focus-visible{
+  outline:2px solid var(--dshp-accent)!important;outline-offset:2px;
+}
 `;
 
 		function formatSize(bytes) {
