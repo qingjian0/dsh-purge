@@ -5028,6 +5028,18 @@ body[data-ds-dark-theme] .rt-dock,body[data-ds-dark-theme] .rt-full,.dshp-dock[d
  .dshp-dock-body .rt-dock .rt-pane,.dshp-dock-body .rt-dock .rt-chain{padding:8px}
 }
 
+
+/* Touch targets in compact embedded panels remain comfortably tappable. */
+@container dshp-workspace (max-width:560px){
+ .dshp-dock-body .rt-dock .rt-btn,.dshp-dock-body .rt-dock .rt-icon-btn,
+ .dshp-dock-body .rt-dock .rt-hbtn,.dshp-dock-body .rt-dock .rt-tab{
+   min-height:36px;box-sizing:border-box
+ }
+ .dshp-dock-body .rt-dock button,.dshp-dock-body .rt-dock [role="button"]{
+   -webkit-tap-highlight-color:transparent
+ }
+}
+
 `    /* ---------------------------------------------------------- 桥接与状态 */
     /** 是否在「全面浏览」独立窗口里（URL hash 标记，复用同一套界面代码）。 */
     const isFullWindow = () => {
