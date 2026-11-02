@@ -1423,7 +1423,7 @@ body[data-ds-dark-theme] .dshp-auth-mask,body[data-ds-dark-theme] .dshp-restart-
 }
 
 /* Compact Workspace adaptive pass: size the dock independently from the host viewport. */
-.dshp-dock{inset:auto 12px auto auto!important;left:auto!important;top:12px!important;bottom:auto!important;width:clamp(240px,60vw,960px)!important;height:min(72vh,760px)!important;min-width:240px!important;min-height:260px!important;max-width:calc(100vw - 16px)!important;max-height:calc(100dvh - 24px)!important;border-radius:16px!important}
+.dshp-dock{width:var(--dshp-dock-w,60vw)!important;height:min(var(--dshp-dock-h,72vh),760px)!important;min-width:min(240px,calc(100vw - 16px))!important;min-height:260px!important;max-width:calc(100vw - 16px)!important;max-height:calc(100dvh - 24px)!important;border-radius:16px!important}
 .dshp-dock-body{container-type:inline-size;container-name:dshp-workspace}
 .dshp-dock-body .dshp-root{padding:0!important;gap:0!important}
 .dshp-dock-body .dshp-page-section{padding:12px;margin:0 0 10px;border-radius:12px}
@@ -1492,7 +1492,7 @@ body[data-ds-dark-theme] .dshp-auth-mask,body[data-ds-dark-theme] .dshp-restart-
  .dshp-dock-body .dshp-dock-tab{padding:7px 6px;font-size:11px}
 }
 @media (max-width:599px){
- .dshp-dock{top:12px!important;right:8px!important;left:auto!important;bottom:auto!important;width:clamp(240px,60vw,480px)!important;height:min(72dvh,720px)!important;min-width:240px!important;min-height:260px!important;max-width:calc(100vw - 16px)!important;max-height:calc(100dvh - 24px)!important;border:1px solid var(--dshp-line)!important;border-radius:14px!important}
+ .dshp-dock{width:var(--dshp-dock-w,60vw)!important;height:min(var(--dshp-dock-h,72dvh),720px)!important;min-width:min(240px,calc(100vw - 16px))!important;min-height:260px!important;max-width:calc(100vw - 16px)!important;max-height:calc(100dvh - 24px)!important;border:1px solid var(--dshp-line)!important;border-radius:14px!important}
  .dshp-dock-head{padding:8px 10px;min-height:42px}
  .dshp-dock-body .dshp-btn,.dshp-dock-body button{min-height:36px}
  .dshp-dock-resize,.dshp-dock-resize-l,.dshp-dock-resize-r,.dshp-dock-resize-b{display:block!important;opacity:.45}
