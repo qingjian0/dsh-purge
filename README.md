@@ -4,7 +4,7 @@
 
 <h1 align="center">⚔️ DeepSeek Harness cybersecurity red-team tool (dsh-purge)</h1>
 
-<p align="center"><strong>Version 1.1.81</strong></p>
+<p align="center"><strong>Version 1.1.88</strong></p>
 
 <p align="center">
   <em>DeepSeek Harness jailbreak: every model, swap prompts per model. Default prompt for 小码酱. Please star ⭐ If you build on this, see Attribution required.</em>
@@ -47,6 +47,7 @@ The author's personal channel: [t.me/LLM_PoJia](https://t.me/LLM_PoJia). Notes a
 - [License](#license)
 - [Supported hosts](#supported-hosts)
 - [Install](#install)
+- [Detailed installation guide](docs/INSTALL.md)
 - [Preview](#preview)
 - [Usage](#usage)
 - [How it works](#how-it-works)
@@ -144,236 +145,64 @@ Unmatched patches stay pending or skipped; nothing is rewritten blindly.
 
 ## Install
 
-**Do not use the plugin marketplace.** One-click install on [dsh-plugin.org](https://dsh-plugin.org) or in Settings → Plugin Market fails with `already queued: dsh-purge` and never runs a command. The name is not on the npm registry, so do not `pnpm add dsh-purge`.
+**Current fork preview:** these commands install `1.1.88` from the maintained development branch. The archive changes as commits are pushed; it is not an immutable release.
 
-### Quick start
+### Recommended: DSH CLI
 
-Have `dsh` on PATH? One command, one restart, one click. Run the line for the host you open (the desktop EXE is the same with `desktop` instead of `web`):
+Choose the profile for the host you actually use. Web and desktop are separate:
 
 ```sh
-# Official `dsh web`
-dsh plugin --profile web add https://codeload.github.com/YuJunZhiXue/dsh-purge/tar.gz/refs/heads/master
+# Official Web host
+dsh plugin --profile web add https://codeload.github.com/qingjian0/dsh-purge/tar.gz/refs/heads/adapt/android-mobile-upstream-1.1.88
 
-# Official desktop EXE
-dsh plugin --profile desktop add https://codeload.github.com/YuJunZhiXue/dsh-purge/tar.gz/refs/heads/master
+# Official desktop host
+dsh plugin --profile desktop add https://codeload.github.com/qingjian0/dsh-purge/tar.gz/refs/heads/adapt/android-mobile-upstream-1.1.88
 ```
 
-1. **Fully quit and reopen** the host you installed into. Web: stop `dsh web` and start it again. Desktop: quit the tray icon too, then open the exe.
-2. On that host, click **dsh-purge** beside the session title → **Clean** → **Apply**. A successful Apply restarts the host once.
+### Alternative: pnpm
 
-Done — verify with `/purge status` in chat. If pnpm asks about build scripts, or anything below does not appear, follow the step by step.
-
-### Step by step
-
-**Step 1 — Pick your host.** Official `dsh web` and the official desktop EXE are installed and patched **separately**; only install into the host you actually open.
-
-| What you run | Profile | Install command |
-|---|---|---|
-| Official `dsh web` | `web` | the `web` line in Quick start |
-| Official desktop EXE | `desktop` | the `desktop` line in Quick start |
-
-**Step 2 — Install the plugin.** Use the `codeload.github.com` URL exactly. Do not use `github.com/.../archive`: that 302 makes pnpm fail with `fetch failed`.
-
-Have `dsh`? Run the Quick start line for your profile. If this directory is already a clone, use `.` instead of the URL.
-
-pnpm only (no `dsh` required): run this inside the profile you actually use, not the repo root.
+Use only if the DSH CLI is unavailable. Run inside the selected profile:
 
 ```sh
-cd "$DSH_HOME/profiles/web"    # desktop: profiles/desktop
-pnpm add https://codeload.github.com/YuJunZhiXue/dsh-purge/tar.gz/refs/heads/master
+cd "$DSH_HOME/profiles/web"   # desktop: profiles/desktop
+pnpm add --allow-build=dsh-purge https://codeload.github.com/qingjian0/dsh-purge/tar.gz/refs/heads/adapt/android-mobile-upstream-1.1.88
 ```
 
 Windows PowerShell:
 
 ```powershell
 cd "$env:USERPROFILE\.dsh\profiles\web"   # desktop: profiles\desktop
-pnpm add https://codeload.github.com/YuJunZhiXue/dsh-purge/tar.gz/refs/heads/master
+pnpm add --allow-build=dsh-purge "https://codeload.github.com/qingjian0/dsh-purge/tar.gz/refs/heads/adapt/android-mobile-upstream-1.1.88"
 ```
 
-`pnpm add` and `dsh plugin add` fetch the package; `postinstall` writes `dsh-purge` into `dsh.profile.bundles` and adds a body `insert` in the profile `cordis.patch.yml`. Without that insert the host never loads the plugin and no button appears.
+The install hook registers the plugin in the selected profile and ensures its Cordis body insert. The pnpm flag allows this package's install hook when build scripts are blocked by default.
 
-**Expected result:** `node_modules/dsh-purge/package.json` exists, `"dsh-purge"` is in that profile's `bundles`, and `cordis.patch.yml` has an `id: dsh-purge` insert.
+### Finish installation
 
-- pnpm 11/12 skips install scripts (`ERR_PNPM_IGNORED_BUILDS`) unless you allow the build:
+1. Fully quit and reopen the same host. On desktop, quit the tray process too.
+2. Open a chat and find **dsh-purge** beside the session title.
+3. Open **Clean** and click **Apply**.
+4. Run `/purge status` in chat and confirm the reported `DSH_HOME` is the profile you intended.
+
+Installing does not apply patches automatically. Web and desktop must each be installed and applied separately.
+
+### Troubleshooting
+
+If the button is missing, check the selected profile for:
+
+- `node_modules/dsh-purge/package.json`
+- `dsh.profile.bundles` containing `dsh-purge`
+- `cordis.patch.yml` containing the `dsh-purge` body insert
+
+If registration is missing, run this from the profile directory, then restart the host:
 
 ```sh
-pnpm add --allow-build=dsh-purge --allow-build=dsh-purge@https://codeload.github.com/YuJunZhiXue/dsh-purge/tar.gz/refs/heads/master https://codeload.github.com/YuJunZhiXue/dsh-purge/tar.gz/refs/heads/master
-# Already installed, warning only — the full specifier is required (name-only leaves "set this to true or false"):
-pnpm approve-builds dsh-purge@https://codeload.github.com/YuJunZhiXue/dsh-purge/tar.gz/refs/heads/master
-# If bundles / insert are still missing:
 node node_modules/dsh-purge/scripts/ensure-profile-bundle.mjs
 ```
 
-- If neither `dsh` nor pnpm is available, jump to [Manual install](#manual).
-- On the desktop client you can also click the button (`dsh://` deep link; it still downloads the same tarball).
+If pnpm blocked the install hook, reinstall with `--allow-build=dsh-purge`. If the CLI says the package is already installed, remove and re-add it in that same profile; do not delete the profile or unrelated bundles.
 
-<p align="center">
-  <a href="dsh://plugin/install?id=dsh-purge&name=dsh-purge&version=1.1.81&repo=YuJunZhiXue%2Fdsh-purge&permissions=%E7%B3%BB%E7%BB%9F%E6%8F%90%E7%A4%BA%E8%AF%8D%E6%B3%A8%E5%85%A5%2C%E6%9C%AC%E6%9C%BA%E8%A1%A5%E4%B8%81%2C%E8%AE%BE%E7%BD%AE%E9%A1%B5&downloadUrl=https%3A%2F%2Fcodeload.github.com%2FYuJunZhiXue%2Fdsh-purge%2Ftar.gz%2Frefs%2Fheads%2Fmaster"><strong>Install in desktop client</strong></a>
-</p>
-
-**Step 3 — Restart the host.** Adding the plugin to a profile does **not** patch `@deepseek-ai` by itself. Fully quit and reopen the host you just installed into (Web: stop `dsh web` and start again; Desktop: quit the tray icon too, then open the exe).
-
-**Expected result:** **dsh-purge** stands beside the session title. Missing? Jump to Step 5.
-
-**Step 4 — Apply and verify.** On **that host**, click **dsh-purge** beside the session title, open **Clean**, and click **Apply**. It is not on the host Settings page. A successful **Apply** restarts once; it does not restart if it did not finish. Web controls affect Web only; desktop controls affect the desktop app only. Do not Apply one host from the other.
-
-**Expected result:** `/purge status` in chat prints `DSH_HOME` and the patch list — the path should be the home you actually run. Optional packages that are not installed (liangshen) show as skipped and do not block Apply.
-
-**Step 5 — Troubleshooting.** Jump here only when a step above did not end with its expected result.
-
-- **No button beside the session title.** Run `dsh --dump-config` (or `dsh --profile desktop --dump-config`) and look for a body row `id: dsh-purge` (not `dsh-purge-redteam`). If it is absent, run `ensure-profile-bundle.mjs` (Step 2), then fully quit and reopen the host. After this version, a live red-team child entry also writes the missing insert on startup — quit and reopen once more. `entry "redteam-store" not found` at the top is leftover from an old red-team package and can be ignored.
-- **The market says `already queued: dsh-purge`.** Stop clicking the market; use `dsh plugin add` or pnpm from Step 2. If the CLI also says it is already there, remove and re-add, then redo Step 3:
-
-```sh
-dsh plugin --profile desktop remove dsh-purge
-dsh plugin --profile desktop add https://codeload.github.com/YuJunZhiXue/dsh-purge/tar.gz/refs/heads/master
-```
-
-pnpm only:
-
-```sh
-cd "$DSH_HOME/profiles/desktop"
-pnpm remove dsh-purge
-pnpm add https://codeload.github.com/YuJunZhiXue/dsh-purge/tar.gz/refs/heads/master
-```
-
-Swap `desktop` for `web` on Web.
-
-### Advanced
-
-**Hand this to an assistant.** Paste the block below to a local assistant. It should only run the install command — no disk scan, no other edits, no Apply, no restart.
-
-<details>
-<summary><strong>For AI assistants (install only)</strong></summary>
-
-<!-- AI-AGENT-START -->
-
-Install the DeepSeek Harness plugin `dsh-purge` into the Web profile only. Do not scan the whole disk, do not read or edit other files, do not apply settings, and do not restart the app. Do not install into the desktop profile. Do not use the plugin marketplace. The name is not on the npm registry; do not `pnpm add dsh-purge`.
-
-**Web (official `dsh web`)**
-
-If `dsh` is on PATH:
-
-```sh
-dsh plugin --profile web add https://codeload.github.com/YuJunZhiXue/dsh-purge/tar.gz/refs/heads/master
-```
-
-If `dsh` is missing and pnpm is available, `cd` into `$DSH_HOME/profiles/web` (often `~/.dsh/profiles/web`) and run:
-
-```sh
-pnpm add https://codeload.github.com/YuJunZhiXue/dsh-purge/tar.gz/refs/heads/master
-```
-
-If this directory is already a clone and `dsh` exists, use `dsh plugin --profile web add .`. If neither `dsh` nor pnpm is available, tell the user and stop.
-
-After the command finishes, tell the user to fully quit and restart `dsh web`, then open **dsh-purge** beside the session title and **Apply** on **Clean**. Then stop.
-
-<!-- AI-AGENT-END -->
-
-</details>
-
-<a id="manual"></a>
-
-**Manual install.** Use this when the command fails or `dsh` is not on PATH. Edit **only the profile for the host you run** — do not touch the other, and do not delete existing bundles.
-
-<details>
-<summary><strong>Full manual steps</strong></summary>
-
-**1. Find the `$DSH_HOME` this host uses.** A real home is named `.dsh` (official EXE sometimes `dsh-home`), contains `profiles`, and has at least one `profiles/<name>/package.json`. Check in order: `DSH_HOME` env → `.dsh` next to the install root (portable) → `%USERPROFILE%\.dsh` or `~/.dsh` → `%APPDATA%` / `%LOCALAPPDATA%\DeepSeek Harness\dsh-home`. Confirm: `profiles/web/package.json` has `"name": "dsh-profile-web"` (or `dsh-profile-desktop`). Machines often have two homes — use the one that belongs to the host you actually start.
-
-PowerShell to list candidates:
-
-```powershell
-$cands = @()
-if ($env:DSH_HOME) { $cands += $env:DSH_HOME }
-$cands += "$env:USERPROFILE\.dsh"
-$dsh = Get-Command dsh -ErrorAction SilentlyContinue
-if ($dsh) {
-  $dir = Split-Path $dsh.Source
-  $cands += @((Join-Path $dir ".dsh"), (Join-Path (Split-Path $dir) ".dsh"), (Join-Path (Split-Path (Split-Path $dir)) ".dsh"))
-}
-$cands += @("$env:APPDATA\DeepSeek Harness\dsh-home", "$env:LOCALAPPDATA\DeepSeek Harness\dsh-home")
-$cands | Select-Object -Unique | Where-Object { $_ -and (Test-Path (Join-Path $_ "profiles")) }
-```
-
-**2. Put the plugin at `$DSH_HOME/plugins/dsh-purge`** (folder must be named `dsh-purge`, with a `package.json` whose `"name"` is `dsh-purge`).
-
-```sh
-git clone https://github.com/YuJunZhiXue/dsh-purge.git "$DSH_HOME/plugins/dsh-purge"
-```
-
-Without git: download [master.tar.gz](https://github.com/YuJunZhiXue/dsh-purge/archive/refs/heads/master.tar.gz), extract, rename `dsh-purge-master` → `dsh-purge`, and place it under `plugins`. If you already have a clone, copy the whole tree — not a few `.js` files.
-
-**3. Edit only that profile's `package.json` — back it up first.** Web → `$DSH_HOME/profiles/web/package.json`; desktop → `$DSH_HOME/profiles/desktop/package.json`. Add **only two things**, keeping every existing dependency and bundle:
-
-1. In `dependencies`, add `"dsh-purge": "file:../../plugins/dsh-purge"`
-2. At the **end** of `dsh.profile.bundles`, append `"dsh-purge"` (skip if already there)
-
-```json
-{
-  "name": "dsh-profile-web",
-  "private": true,
-  "dependencies": {
-    "dsh-purge": "file:../../plugins/dsh-purge"
-  },
-  "dsh": {
-    "profile": {
-      "bundles": [
-        "@deepseek-ai/dsh-base",
-        "@deepseek-ai/dsh-web-app",
-        "dsh-purge"
-      ],
-      "patchReload": "live"
-    }
-  }
-}
-```
-
-Keep JSON valid (comma before the new item, none after the last). Do not switch `file:../../plugins/dsh-purge` to an absolute path, do not touch `patchReload` or other plugins, and do not list `"dsh-purge"` twice. On desktop, if there is no `dsh-web-app` row, do not add one.
-
-**4. Run `pnpm install` in that profile only** (`cd` into the profile dir, not the repo root or `$DSH_HOME`):
-
-```sh
-cd "$DSH_HOME/profiles/web"   # or profiles/desktop
-pnpm install
-```
-
-Success: `profiles/<web|desktop>/node_modules/dsh-purge/package.json` exists. If `pnpm` is missing, use the Node / pnpm shipped with official `dsh`; on `Could not resolve`, re-check the `file:` path; on a JSON error, fix commas or restore the backup.
-
-**5. Fully quit that host, reopen it, then Apply** — Step 3 and Step 4 above. The card appears beside the session title; click **Apply** (or `/purge apply`) on that host only. If the card is missing, you likely edited the other `.dsh` — go back to step 1.
-
-</details>
-
-**Uninstall.** **dsh-purge** beside the session title → **Clean** → **Uninstall**. Confirm the dialog: it reverts any applied patches, restores the original Harness, and restarts the current host. Disable or uninstall also resets an agent-preset default that still points at `redteam` back to `standard`, so the host can create sessions after the preset is gone.
-
-<details>
-<summary><strong>Uninstall commands and config</strong></summary>
-
-```sh
-# or from a terminal / chat
-dsh-purge --uninstall
-# /purge uninstall
-```
-
-Plugin config lives in `cordis.patch.yml` (`postPrompt` is empty by default):
-
-```yaml
-- insert:
-    - id: dsh-purge
-      name: 'dsh-purge'
-      config:
-        enabled: true
-        autoApplyOnStart: true
-        autoUpdateOnStart: false
-        autoRevertOnMissing: false
-        verbose: false
-        postPromptOrder: 5100
-        postPrompt: ""
-```
-
-</details>
-
----
+For the complete procedure and update instructions, see the [installation guide](docs/INSTALL.md).
 
 ## Preview
 
