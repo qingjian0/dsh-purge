@@ -1609,10 +1609,10 @@ body[data-ds-dark-theme] .dshp-auth-mask,body[data-ds-dark-theme] .dshp-restart-
  vertical-align:middle;
 }
 .dshp-dock-body .dshp-table tbody td:first-child{
- grid-area:auto;width:28%;font-size:inherit;line-height:16px;
+ grid-area:auto;font-size:inherit;line-height:16px;
 }
 .dshp-dock-body .dshp-table tbody td:nth-child(2){
- grid-area:auto;width:42%;font-size:inherit;line-height:16px;
+ grid-area:auto;font-size:inherit;line-height:16px;
 }
 .dshp-dock-body .dshp-table tbody td:last-child{
  grid-area:auto;justify-self:auto;align-self:auto;padding-left:6px;
