@@ -1500,6 +1500,44 @@ body[data-ds-dark-theme] .dshp-auth-mask,body[data-ds-dark-theme] .dshp-restart-
  .dshp-modal,.dshp-auth-modal{max-height:calc(100dvh - 24px)}
 }
 
+
+/* Compact forms and rows: keep information on one line where the available width allows it. */
+@container dshp-workspace (max-width:700px){
+ .dshp-dock-body .dshp-rules-host .dshp-split{display:flex;flex-direction:column;gap:8px}
+ .dshp-dock-body .dshp-rules-host .dshp-rulebody{max-height:240px;min-height:0}
+ .dshp-dock-body .dshp-rules-host .dshp-editor{min-height:260px;padding:9px}
+ .dshp-dock-body .dshp-rules-host .dshp-editor .dshp-area{min-height:180px;font-size:13px}
+ .dshp-dock-body .dshp-rules-host .dshp-policy-row{flex-direction:row;align-items:center;gap:6px}
+ .dshp-dock-body .dshp-rules-host .dshp-policy-row .dshp-field{flex:1;min-width:0;width:auto}
+ .dshp-dock-body .dshp-rules-host .dshp-ruleitem{flex-wrap:nowrap;align-items:center;gap:6px;padding:7px 8px}
+ .dshp-dock-body .dshp-rules-host .dshp-rule-main{min-width:0;flex:1}
+ .dshp-dock-body .dshp-rules-host .dshp-rule-name{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px;line-height:16px}
+ .dshp-dock-body .dshp-rules-host .dshp-rule-meta{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:9.5px;line-height:13px;margin-top:1px}
+ .dshp-dock-body .dshp-rules-host .dshp-rule-ops{width:auto;flex:0 0 auto;gap:3px}
+ .dshp-dock-body .dshp-rules-host .dshp-rule-ops .dshp-btn{min-height:28px;padding:3px 6px;font-size:10px!important;line-height:14px!important}
+ .dshp-dock-body .dshp-rules-host .dshp-create{padding:8px;gap:6px}
+ .dshp-dock-body .dshp-rules-host .dshp-create-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:5px}
+ .dshp-dock-body .dshp-rules-host .dshp-create-row .dshp-field{grid-column:auto;min-width:0;width:100%;font-size:11px;padding:6px}
+ .dshp-dock-body .dshp-rules-host .dshp-create-row select{grid-column:1;min-width:0!important}
+ .dshp-dock-body .dshp-rules-host .dshp-create-row .dshp-btn{grid-column:2;min-height:32px}
+ .dshp-dock-body .dshp-edition{grid-template-columns:auto minmax(0,1fr) auto;gap:6px;padding:8px 0}
+ .dshp-dock-body .dshp-edition-name{font-size:12px;line-height:16px}
+ .dshp-dock-body .dshp-edition .dshp-btn{min-width:0;padding:5px 7px;font-size:10px!important}
+ .dshp-dock-body .dshp-edition .dshp-ver{min-width:0;font-size:10px}
+ .dshp-dock-body .dshp-now-ver{font-size:16px;line-height:20px}
+ .dshp-dock-body .dshp-now-mark{font-size:9px;padding:1px 5px;margin-left:3px}
+ .dshp-dock-body .dshp-block{padding:10px 0}
+ .dshp-dock-body .dshp-block-head h4{font-size:13px}
+ .dshp-dock-body .dshp-block-hint{font-size:10.5px;line-height:1.45}
+}
+@container dshp-workspace (max-width:360px){
+ .dshp-dock-body .dshp-rules-host .dshp-rule-ops .dshp-btn{padding:3px 4px;font-size:9px!important}
+ .dshp-dock-body .dshp-edition{grid-template-columns:1fr auto;grid-template-areas:"name btn" "sel sel"}
+ .dshp-dock-body .dshp-edition-name{grid-area:name}
+ .dshp-dock-body .dshp-edition .dshp-ver{grid-area:sel}
+ .dshp-dock-body .dshp-edition .dshp-btn{grid-area:btn}
+}
+
 `;
 
 		function formatSize(bytes) {
@@ -1713,7 +1751,7 @@ body[data-ds-dark-theme] .dshp-auth-mask,body[data-ds-dark-theme] .dshp-restart-
 						)),
 						h("tbody", null, rows.map((r) => h("tr", { key: r.ids ? r.ids.join("-") : r.id },
 							h("td", { className: "dshp-id" }, patchIdLabel(r)),
-							h("td", null, patchTitle(t, state, r)),
+							h("td", { title: patchTitle(t, state, r), "aria-label": patchTitle(t, state, r) }, patchTitle(t, state, r)),
 							h("td", null, h(Pill, { value: r.st })),
 						))),
 					) : null,
