@@ -1277,6 +1277,12 @@ body[data-ds-dark-theme] .dshp-dock-body .rt-btn-primary,
   .dshp-group-h strong{flex:0 0 auto}
   .dshp-count{flex:1 1 100%;white-space:normal;overflow-wrap:anywhere;line-height:16px;text-align:right}
   .dshp-page-section .dshp-area{min-height:240px}
+  .dshp-page-section[data-page-section="prompt"] .dshp-area{
+    font-size:16px;line-height:1.55;
+  }
+  .dshp-page-section[data-page-section="updates"] .dshp-ver{
+    min-height:44px;height:44px;font-size:16px;
+  }
   .dshp-rules-host>.dshp-panel{padding:14px!important}
   .dshp-page-section[data-page-section="clean"]>.dshp-row .dshp-btn{
     flex:1 1 112px;min-width:0;min-height:48px;
