@@ -1421,6 +1421,85 @@ body[data-ds-dark-theme] .dshp-auth-mask,body[data-ds-dark-theme] .dshp-restart-
 .dshp-dock :is(button,[role="button"],input,select,textarea):focus-visible{
   outline:2px solid var(--dshp-accent)!important;outline-offset:2px;
 }
+
+/* Compact Workspace adaptive pass: size the dock independently from the host viewport. */
+.dshp-dock{inset:auto 12px auto auto!important;left:auto!important;top:12px!important;bottom:auto!important;width:clamp(240px,60vw,960px)!important;height:min(72vh,760px)!important;min-width:240px!important;min-height:260px!important;max-width:calc(100vw - 16px)!important;max-height:calc(100dvh - 24px)!important;border-radius:16px!important}
+.dshp-dock-body{container-type:inline-size;container-name:dshp-workspace}
+.dshp-dock-body .dshp-root{padding:0!important;gap:0!important}
+.dshp-dock-body .dshp-page-section{padding:12px;margin:0 0 10px;border-radius:12px}
+.dshp-dock-body .dshp-head{margin-bottom:8px;gap:8px}
+.dshp-dock-body .dshp-title{font-size:17px;line-height:22px}
+.dshp-dock-body .dshp-sub{margin:12px 0 6px}
+.dshp-dock-body .dshp-panel{padding:12px}
+.dshp-dock-body .dshp-workspace-header{padding:10px 14px;min-height:44px}
+.dshp-dock-body .dshp-workspace-header h2{font-size:17px;line-height:22px}
+.dshp-dock-body .dshp-workspace-content{padding:10px;overscroll-behavior:contain}
+.dshp-dock-body .dshp-workspace-nav{gap:4px;padding:8px}
+.dshp-dock-body .dshp-workspace-nav-item{min-height:40px;padding:0 10px;font-size:12px}
+.dshp-dock-body .dshp-metrics{grid-template-columns:minmax(0,1.05fr) minmax(0,1.35fr) minmax(0,.85fr);gap:5px;margin:0 0 8px}
+.dshp-dock-body .dshp-metric{min-width:0;min-height:44px;padding:6px 7px;gap:1px;border-radius:8px;justify-content:center;overflow:hidden}
+.dshp-dock-body .dshp-metric b{font-size:14px;line-height:18px;white-space:nowrap;min-width:0}
+.dshp-dock-body .dshp-metric span{font-size:10px;line-height:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.dshp-dock-body .dshp-metric:nth-child(2) b{display:flex;align-items:center;gap:2px;min-width:0}
+.dshp-dock-body .dshp-metric:nth-child(2) .dshp-pill{font-size:9px;line-height:13px;padding:0 3px;gap:2px}
+.dshp-dock-body .dshp-metric:nth-child(2) .dshp-pill:before{width:4px;height:4px}
+.dshp-dock-body .dshp-flow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px 6px;margin:0 0 8px;padding:6px;border:1px solid var(--dshp-line);border-radius:10px;overflow:visible;align-items:center}
+.dshp-dock-body .dshp-flow-kind{grid-column:1/-1;margin:0;font-size:10px;line-height:14px;letter-spacing:.04em}
+.dshp-dock-body .dshp-flow-wire{display:none!important}
+.dshp-dock-body .dshp-flow-node{min-width:0;display:flex;flex-direction:row;align-items:center;justify-content:flex-start;gap:4px;opacity:.72;transform:none!important}
+.dshp-dock-body .dshp-flow-node b{width:18px;height:18px;flex:0 0 18px;font-size:10px}
+.dshp-dock-body .dshp-flow-node em{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:10.5px;line-height:14px}
+.dshp-dock-body .dshp-bar{height:3px;margin:4px 0 10px}
+.dshp-dock-body .dshp-table{table-layout:fixed}
+.dshp-dock-body .dshp-table th,.dshp-dock-body .dshp-table td{padding:5px 6px;line-height:16px}
+.dshp-dock-body .dshp-table th:first-child,.dshp-dock-body .dshp-table td:first-child{width:28%;white-space:nowrap}
+.dshp-dock-body .dshp-table th:nth-child(2),.dshp-dock-body .dshp-table td:nth-child(2){width:42%}
+.dshp-dock-body .dshp-table th:last-child,.dshp-dock-body .dshp-table td:last-child{width:30%;white-space:nowrap}
+.dshp-dock-body .dshp-table td:nth-child(2){overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.dshp-dock-body .dshp-table .dshp-pill{font-family:inherit;font-size:10px;line-height:14px;padding:0 4px;gap:3px;white-space:nowrap}
+.dshp-dock-body .dshp-table .dshp-pill:before{width:5px;height:5px}
+.dshp-dock-body .dshp-group{margin-bottom:6px;border-radius:8px}
+.dshp-dock-body .dshp-group-h{gap:6px;padding:6px 8px}
+.dshp-dock-body .dshp-group-h strong{font-size:12px;line-height:16px}
+.dshp-dock-body .dshp-count{font-size:10px;line-height:14px;white-space:nowrap}
+.dshp-dock-body .dshp-group-h em{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.dshp-dock-body .dshp-btn{font-size:13px!important;line-height:18px!important;padding:6px 10px;min-height:36px}
+.dshp-dock-body .dshp-page-section .dshp-area{min-height:220px}
+@container dshp-workspace (max-width:560px){
+ .dshp-workspace{grid-template-columns:1fr;grid-template-rows:minmax(0,1fr) auto}
+ .dshp-workspace-main{grid-row:1;min-height:0}
+ .dshp-workspace-nav{grid-row:2;display:flex;flex-direction:row;gap:2px;overflow:hidden;padding:5px 4px;border-right:0;border-top:1px solid var(--dshp-line);border-bottom:0}
+ .dshp-workspace-nav-item{flex:1 1 0;min-width:0;width:auto;min-height:38px;padding:0 2px;justify-content:center;text-align:center;font-size:10px;line-height:13px;white-space:nowrap;border-radius:9px}
+ .dshp-workspace-header{padding:8px 10px;min-height:38px}
+ .dshp-workspace-header h2{font-size:15px;line-height:20px}
+ .dshp-workspace-content{padding:8px}
+ .dshp-dock-body .dshp-page-section{padding:9px;margin-bottom:8px;border-radius:10px}
+ .dshp-dock-body .dshp-metrics{gap:4px}
+ .dshp-dock-body .dshp-metric{padding:5px 4px;min-height:40px}
+ .dshp-dock-body .dshp-metric b{font-size:12px;line-height:16px}
+ .dshp-dock-body .dshp-metric span{font-size:9px;line-height:12px}
+ .dshp-dock-body .dshp-metric:nth-child(2) .dshp-pill{font-size:8px;line-height:12px;padding:0 2px;gap:1px}
+ .dshp-dock-body .dshp-flow{gap:4px 3px;padding:5px}
+ .dshp-dock-body .dshp-flow-node{gap:3px}
+ .dshp-dock-body .dshp-flow-node b{width:16px;height:16px;flex-basis:16px;font-size:9px}
+ .dshp-dock-body .dshp-flow-node em{font-size:9.5px;line-height:12px}
+ .dshp-dock-body .dshp-table th,.dshp-dock-body .dshp-table td{padding:4px 4px;font-size:10.5px}
+ .dshp-dock-body .dshp-table th:first-child,.dshp-dock-body .dshp-table td:first-child{width:29%}
+ .dshp-dock-body .dshp-table th:nth-child(2),.dshp-dock-body .dshp-table td:nth-child(2){width:40%}
+ .dshp-dock-body .dshp-table th:last-child,.dshp-dock-body .dshp-table td:last-child{width:31%}
+ .dshp-dock-body .dshp-table .dshp-pill{font-size:9px;padding:0 3px}
+ .dshp-dock-body .dshp-dock-tabs{gap:3px;padding:0 6px}
+ .dshp-dock-body .dshp-dock-tab{padding:7px 6px;font-size:11px}
+}
+@media (max-width:599px){
+ .dshp-dock{top:12px!important;right:8px!important;left:auto!important;bottom:auto!important;width:clamp(240px,60vw,480px)!important;height:min(72dvh,720px)!important;min-width:240px!important;min-height:260px!important;max-width:calc(100vw - 16px)!important;max-height:calc(100dvh - 24px)!important;border:1px solid var(--dshp-line)!important;border-radius:14px!important}
+ .dshp-dock-head{padding:8px 10px;min-height:42px}
+ .dshp-dock-body .dshp-btn,.dshp-dock-body button{min-height:36px}
+ .dshp-dock-resize,.dshp-dock-resize-l,.dshp-dock-resize-r,.dshp-dock-resize-b{display:block!important;opacity:.45}
+ .dshp-modal-bg,.dshp-auth-mask{padding:12px}
+ .dshp-modal,.dshp-auth-modal{max-height:calc(100dvh - 24px)}
+}
+
 `;
 
 		function formatSize(bytes) {
@@ -4853,6 +4932,34 @@ body[data-ds-dark-theme] .rt-dock,body[data-ds-dark-theme] .rt-full,.dshp-dock[d
 
 /* Embedded RedTeam has no drag handles; preserve native touch scrolling on touch devices. */
 .rt-dock.rt-embedded{touch-action:auto}
+
+/* Compact Workspace integration: adapt embedded RedTeam to its actual panel width. */
+@container dshp-workspace (max-width:560px){
+ .dshp-dock-body .rt-dock .rt-head{padding:6px 8px;gap:5px}
+ .dshp-dock-body .rt-dock .rt-title{font-size:12px}
+ .dshp-dock-body .rt-dock .rt-tabs{gap:2px;padding:2px 5px;overflow-x:auto;flex-wrap:nowrap}
+ .dshp-dock-body .rt-dock .rt-tab{flex:0 0 auto;min-height:34px;padding:5px 7px;font-size:10.5px}
+ .dshp-dock-body .rt-dock .rt-pane,.dshp-dock-body .rt-dock .rt-chain{padding:7px}
+ .dshp-dock-body .rt-dock .rt-toolbar{gap:4px;padding:5px 6px}
+ .dshp-dock-body .rt-dock .rt-side,.dshp-dock-body .rt-dock .rt-list{width:104px;max-width:34%;padding:5px}
+ .dshp-dock-body .rt-dock .rt-seg,.dshp-dock-body .rt-dock .rt-item{padding:5px;margin-bottom:3px}
+ .dshp-dock-body .rt-dock .rt-item-name,.dshp-dock-body .rt-dock .rt-seg-cidr{font-size:10.5px}
+ .dshp-dock-body .rt-dock .rt-item-desc,.dshp-dock-body .rt-dock .rt-seg-meta{font-size:9.5px}
+ .dshp-dock-body .rt-dock .rt-card,.dshp-dock-body .rt-dock .rt-sess{padding:8px;margin-bottom:7px}
+ .dshp-dock-body .rt-dock .rt-btn,.dshp-dock-body .rt-dock .rt-input,.dshp-dock-body .rt-dock .rt-eng-select{min-height:32px;padding:4px 7px;font-size:10.5px}
+ .dshp-dock-body .rt-dock .rt-row,.dshp-dock-body .rt-dock .rt-vrow{min-width:0;gap:4px;padding:5px 6px;font-size:10px}
+ .dshp-dock-body .rt-dock .rt-score-row{min-width:0;grid-template-columns:14px 42px minmax(0,1fr) 66px 42px;gap:3px;padding:5px;font-size:10px}
+ .dshp-dock-body .rt-dock .rt-score-row.head{font-size:9px}
+ .dshp-dock-body .rt-dock .rt-table{min-width:0;overflow-x:auto;overscroll-behavior-x:contain}
+ .dshp-dock-body .rt-dock .rt-split>.rt-side,.dshp-dock-body .rt-dock .rt-split>.rt-list{max-height:22vh}
+ .dshp-dock-body .rt-dock .rt-split>.rt-main{min-height:150px}
+ .dshp-dock-body .rt-dock .rt-foot{gap:5px;padding:5px 7px;font-size:9.5px}
+ .dshp-dock-body .rt-dock .rt-modal-box{padding:10px;width:100%;max-width:100%}
+}
+@media (min-width:600px) and (max-width:839px){
+ .dshp-dock-body .rt-dock .rt-row,.dshp-dock-body .rt-dock .rt-vrow,.dshp-dock-body .rt-dock .rt-score-row{min-width:0}
+}
+
 `    /* ---------------------------------------------------------- 桥接与状态 */
     /** 是否在「全面浏览」独立窗口里（URL hash 标记，复用同一套界面代码）。 */
     const isFullWindow = () => {
