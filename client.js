@@ -967,7 +967,7 @@ window.__ModuleLoader__.load({ id: "dsh-purge", factory: (require) => {
 .dshp-restart-card .dshp-btn-primary,.dshp-restart-card .dshp-btn-primary:hover:not(:disabled){color:#fff;background:var(--dsw-alias-brand-primary,#2f6b4f);border-color:var(--dsw-alias-brand-primary,#2f6b4f)}
 body[data-ds-dark-theme] .dshp-restart-card,.dshp-restart-mask[data-theme="dusk"] .dshp-restart-card{background:color-mix(in srgb,var(--dsw-alias-bg-layer-1,#1c1e24) 42%,transparent);color:#f4f1ea;border-color:color-mix(in srgb,var(--dsw-alias-brand-primary,#6dbf8c) 32%,transparent);box-shadow:inset 0 1px 0 color-mix(in srgb,#fff 10%,transparent),0 16px 40px color-mix(in srgb,#000 28%,transparent)}
 body[data-ds-dark-theme] .dshp-restart-card .dshp-btn,.dshp-restart-mask[data-theme="dusk"] .dshp-restart-card .dshp-btn{color:#f4f1ea;background:color-mix(in srgb,#1c1e24 42%,transparent);border-color:color-mix(in srgb,#6dbf8c 32%,transparent)}
-body[data-ds-dark-theme] .dshp-restart-card .dshp-btn-primary,body[data-ds-dark-theme] .dshp-restart-card .dshp-btn-primary:hover:not(:disabled),.dshp-restart-mask[data-theme="dusk"] .dshp-restart-card .dshp-btn-primary,.dshp-restart-mask[data-theme="dusk"] .dshp-restart-card .dshp-btn-primary:hover:not(:disabled){color:#fff;background:#3d8f68;border-color:#3d8f68}
+body[data-ds-dark-theme] .dshp-restart-card .dshp-btn-primary,body[data-ds-dark-theme] .dshp-restart-card .dshp-btn-primary:hover:not(:disabled),.dshp-restart-mask[data-theme="dusk"] .dshp-restart-card .dshp-btn-primary,.dshp-restart-mask[data-theme="dusk"] .dshp-restart-card .dshp-btn-primary:hover:not(:disabled){color:#fff;background:#347a59;border-color:#347a59}
 .dshp-notice{font-size:12px;line-height:16px}
 .dshp-notice.is-ok{color:var(--dshp-ok)}
 .dshp-notice.is-bad{color:var(--dshp-bad)}
@@ -1155,7 +1155,7 @@ body[data-ds-dark-theme] .dshp-launch{background:color-mix(in srgb,var(--dsw-ali
 body[data-ds-dark-theme] .dshp-btn-primary,
 .dshp-root[data-theme="dusk"] .dshp-btn-primary,
 .dshp-dock[data-theme="dusk"] .dshp-btn-primary,
-.dshp-restart-mask[data-theme="dusk"] .dshp-btn-primary{background:#3d8f68!important;border-color:#3d8f68!important;color:#fff!important;-webkit-text-fill-color:#fff!important}
+.dshp-restart-mask[data-theme="dusk"] .dshp-btn-primary{background:#347a59!important;border-color:#347a59!important;color:#fff!important;-webkit-text-fill-color:#fff!important}
 body[data-ds-dark-theme] .dshp-btn-primary:hover:not(:disabled),
 .dshp-root[data-theme="dusk"] .dshp-btn-primary:hover:not(:disabled),
 .dshp-dock[data-theme="dusk"] .dshp-btn-primary:hover:not(:disabled),
@@ -1165,7 +1165,7 @@ body[data-ds-dark-theme] .rt-btn-primary:hover:not(:disabled),
 .dshp-dock[data-theme="dusk"] .rt-btn-primary,
 .dshp-dock[data-theme="dusk"] .rt-btn-primary:hover:not(:disabled),
 body[data-ds-dark-theme] .dshp-dock-body .rt-btn-primary,
-.dshp-dock[data-theme="dusk"] .dshp-dock-body .rt-btn-primary{background:#3d8f68!important;border-color:#3d8f68!important;color:#fff!important;-webkit-text-fill-color:#fff!important;backdrop-filter:none;color:#fff}
+.dshp-dock[data-theme="dusk"] .dshp-dock-body .rt-btn-primary{background:#347a59!important;border-color:#347a59!important;color:#fff!important;-webkit-text-fill-color:#fff!important;backdrop-filter:none;color:#fff}
 /* Material 3 · Freshwater — shared semantic foundation */
 .dshp-root,.dshp-dock{
   --dshp-bg:#F3F5F3;--dshp-paper:#FFFFFF;--dshp-ink:#18343B;--dshp-mute:#52676D;
