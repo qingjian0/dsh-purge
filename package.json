@@ -79,8 +79,8 @@
     },
     "install": {
       "preferred": "tarball",
-      "tarball": "https://codeload.github.com/qingjian0/dsh-purge/tar.gz/refs/heads/adapt/android-mobile-upstream-1.1.88",
-      "zip": "https://codeload.github.com/qingjian0/dsh-purge/zip/refs/heads/adapt/android-mobile-upstream-1.1.88",
+      "tarball": "https://codeload.github.com/qingjian0/dsh-purge/tar.gz/refs/heads/master",
+      "zip": "https://codeload.github.com/qingjian0/dsh-purge/zip/refs/heads/master",
       "git": "https://github.com/qingjian0/dsh-purge.git"
     }
   },
