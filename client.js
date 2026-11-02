@@ -8837,7 +8837,7 @@ body[data-ds-dark-theme] .rt-dock,body[data-ds-dark-theme] .rt-full,.dshp-dock[d
 		function defaultDockGeom() {
 			const vw = typeof window !== "undefined" ? window.innerWidth : 1280;
 			const vh = typeof window !== "undefined" ? window.innerHeight : 800;
-			const w = Math.min(620, Math.max(380, vw - 16));
+			const w = Math.min(960, Math.max(240, Math.round(vw * 0.6)));
 			const y = 48;
 			const h = Math.max(240, Math.min(640, vh - y - DOCK_COMPOSER_CLEAR));
 			return { x: Math.max(8, vw - w - 8), y: y, w: w, h: h };
@@ -8845,7 +8845,10 @@ body[data-ds-dark-theme] .rt-dock,body[data-ds-dark-theme] .rt-full,.dshp-dock[d
 		function clampDockGeom(g) {
 			const vw = typeof window !== "undefined" ? window.innerWidth : 1280;
 			const vh = typeof window !== "undefined" ? window.innerHeight : 800;
-			const w = Math.min(Math.max(380, Number(g && g.w) || 620), Math.max(380, vw - 16));
+			const requestedW = Number(g && g.w) > 0 ? Number(g.w) : Math.round(vw * 0.6);
+			const adaptStoredW = requestedW > vw * 0.82 || (requestedW <= 260 && vw > 500);
+			const targetW = adaptStoredW ? Math.round(vw * 0.6) : requestedW;
+			const w = Math.min(Math.max(240, targetW), Math.max(240, vw - 16));
 			const h = Math.min(Math.max(240, Number(g && g.h) || 520), Math.max(240, vh - 16));
 			const x = Math.min(Math.max(8, Number(g && g.x) || 8), Math.max(8, vw - w - 8));
 			const y = Math.min(Math.max(8, Number(g && g.y) || 8), Math.max(8, vh - Math.min(h, vh - 16) - 8));
