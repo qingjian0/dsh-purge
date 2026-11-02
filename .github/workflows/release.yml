@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+      - adapt/android-mobile-upstream-1.1.88
 
 permissions:
   contents: write
@@ -14,7 +15,7 @@ concurrency:
 
 jobs:
   release:
-    if: github.repository == 'YuJunZhiXue/dsh-purge'
+    if: github.repository == 'qingjian0/dsh-purge'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
