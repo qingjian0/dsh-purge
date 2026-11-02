@@ -1277,6 +1277,22 @@ body[data-ds-dark-theme] .dshp-dock-body .rt-btn-primary,
   .dshp-count{flex:1 1 100%;white-space:normal;overflow-wrap:anywhere;line-height:16px;text-align:right}
   .dshp-page-section .dshp-area{min-height:240px}
   .dshp-rules-host>.dshp-panel{padding:14px!important}
+  .dshp-page-section[data-page-section="clean"]>.dshp-row .dshp-btn{
+    flex:1 1 112px;min-width:0;min-height:48px;
+  }
+  .dshp-page-section[data-page-section="clean"]>.dshp-row{
+    align-items:stretch;gap:8px;
+  }
+  .dshp-flow{
+    max-width:100%;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch;
+    scrollbar-width:thin;scrollbar-color:var(--dshp-line) transparent;
+    scroll-snap-type:x proximity;padding-bottom:8px;
+  }
+  .dshp-flow::-webkit-scrollbar{height:4px}
+  .dshp-flow::-webkit-scrollbar-track{background:transparent}
+  .dshp-flow::-webkit-scrollbar-thumb{background:var(--dshp-line);border-radius:999px}
+  .dshp-flow-node{flex:0 0 auto;scroll-snap-align:center}
+  .dshp-flow-wire{flex:0 0 12px}
 }
 
 /* Freshwater hard override: keep the embedded console on the same opaque M3 surfaces. */
