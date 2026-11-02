@@ -4507,6 +4507,67 @@ body[data-ds-dark-theme] .rt-scope-testing,.dshp-dock[data-theme="dusk"] .rt-sco
 .rt-full .rt-side{width:240px}
 .rt-full .rt-list{width:256px}
 .rt-full .rt-row{grid-template-columns:minmax(0,1.2fr) minmax(64px,90px) minmax(80px,130px) minmax(0,1.4fr) minmax(0,1.2fr)}
+/* Material 3 · Freshwater — RedTeam shares the host semantic roles */
+.rt-dock,.rt-full,.dshp-dock .rt-dock{
+  --rt-paper:#FFFFFF;--rt-paper-2:#F3F5F3;--rt-well:#EAF1F2;--rt-fill:#E7F0F2;
+  --rt-line:#D3E0E3;--rt-line-2:#A9C2C8;--rt-hi:transparent;
+  --rt-ink:#18343B;--rt-mute:#52676D;--rt-accent:#315D67;
+  --rt-ok:#276C59;--rt-warn:#805A20;--rt-bad:#A43D45;
+  color:var(--rt-ink);background:var(--rt-paper);border-color:var(--rt-line);
+  box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none;
+}
+body[data-ds-dark-theme] .rt-dock,body[data-ds-dark-theme] .rt-full,.dshp-dock[data-theme="dusk"] .rt-dock,.dshp-dock[data-theme="dusk"] .rt-full{
+  --rt-paper:#1A2D33;--rt-paper-2:#14262B;--rt-well:#203A41;--rt-fill:#29464D;
+  --rt-line:#365159;--rt-line-2:#52727A;--rt-hi:transparent;
+  --rt-ink:#E3F0F1;--rt-mute:#A9BEC2;--rt-accent:#B9E4D2;
+  --rt-ok:#9DD8C0;--rt-warn:#E6C58B;--rt-bad:#F2B5B8;
+  color:var(--rt-ink);background:var(--rt-paper);border-color:var(--rt-line);
+}
+.rt-dock .rt-head,.rt-full .rt-head,.rt-dock .rt-tabs,.rt-full .rt-tabs,.rt-dock .rt-foot,.rt-full .rt-foot{
+  border-color:var(--rt-line);background:var(--rt-paper)
+}
+.rt-dock .rt-tab,.rt-full .rt-tab{min-height:44px;border-radius:999px;padding:8px 14px;color:var(--rt-mute);border:0}
+.rt-dock .rt-tab.on,.rt-full .rt-tab.on{background:var(--rt-fill);color:var(--rt-accent);border:0}
+.rt-dock .rt-card,.rt-full .rt-card,.rt-dock .rt-sess,.rt-full .rt-sess{
+  background:var(--rt-paper);border:1px solid var(--rt-line);border-radius:16px;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none
+}
+.rt-dock .rt-btn,.rt-full .rt-btn,.rt-dock .rt-input,.rt-full .rt-input{border-radius:999px;min-height:40px}
+.rt-dock .rt-btn-primary,.rt-full .rt-btn-primary{background:var(--rt-accent);border-color:var(--rt-accent);color:#fff}
+.rt-dock .rt-input,.rt-full .rt-input,.rt-dock .rt-textarea,.rt-full .rt-textarea{background:var(--rt-paper-2);border-color:var(--rt-line);color:var(--rt-ink)}
+.rt-dock .rt-row:hover,.rt-dock .rt-item:hover,.rt-dock .rt-item.on,.rt-dock .rt-seg:hover,.rt-dock .rt-seg.on,
+.rt-full .rt-row:hover,.rt-full .rt-item:hover,.rt-full .rt-item.on,.rt-full .rt-seg:hover,.rt-full .rt-seg.on{background:var(--rt-fill)}
+.rt-dock .rt-side,.rt-dock .rt-list,.rt-full .rt-side,.rt-full .rt-list{border-color:var(--rt-line)}
+.rt-dock .rt-table,.rt-full .rt-table{min-width:0}
+@media (max-width:839px){
+  .rt-dock .rt-head,.rt-full .rt-head{flex-wrap:wrap}
+  .rt-dock .rt-tabs,.rt-full .rt-tabs{flex-wrap:nowrap;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:thin}
+  .rt-dock .rt-tab,.rt-full .rt-tab{flex:0 0 auto;min-height:48px}
+  .rt-dock .rt-foot,.rt-full .rt-foot{gap:8px}
+  .rt-dock .rt-side,.rt-full .rt-side{width:148px;max-width:38vw}
+  .rt-dock .rt-list,.rt-full .rt-list{width:156px;max-width:40vw}
+}
+@media (max-width:599px){
+  .rt-dock.rt-embedded{border-radius:0}
+  .rt-dock .rt-head,.rt-full .rt-head{padding:8px 12px}
+  .rt-dock .rt-tabs,.rt-full .rt-tabs{padding:4px 8px}
+  .rt-dock .rt-pane,.rt-full .rt-pane,.rt-dock .rt-chain,.rt-full .rt-chain{padding:10px}
+  .rt-dock .rt-btn,.rt-full .rt-btn,.rt-dock .rt-input,.rt-full .rt-input{min-height:48px}
+  .rt-dock .rt-row,.rt-full .rt-row,.rt-dock .rt-vrow,.rt-full .rt-vrow{min-width:680px}
+  .rt-dock .rt-table,.rt-full .rt-table{overflow-x:auto}
+  .rt-dock .rt-side,.rt-full .rt-side{width:116px;max-width:34vw;padding:6px}
+  .rt-dock .rt-list,.rt-full .rt-list{width:128px;max-width:36vw;padding:6px}
+}
+@media (prefers-reduced-motion:reduce){.rt-dock *,.rt-full *{transition:none!important;animation:none!important}}
+
+@media (min-width:840px){
+  .rt-full{display:grid!important;grid-template-columns:208px minmax(0,1fr);grid-template-rows:auto minmax(0,1fr) auto}
+  .rt-full>.rt-head{grid-column:1/-1;grid-row:1}
+  .rt-full>.rt-tabs{grid-column:1;grid-row:2;display:flex;flex-direction:column;flex-wrap:nowrap;align-items:stretch;gap:6px;overflow:auto;padding:12px;border-right:1px solid var(--rt-line);border-bottom:0}
+  .rt-full>.rt-tabs .rt-tab{justify-content:flex-start;text-align:left;min-height:48px;padding:0 14px}
+  .rt-full>.rt-body{grid-column:2;grid-row:2;max-width:none;width:100%;margin:0;min-height:0}
+  .rt-full>.rt-foot{grid-column:1/-1;grid-row:3}
+}
+
 `    /* ---------------------------------------------------------- 桥接与状态 */
     /** 是否在「全面浏览」独立窗口里（URL hash 标记，复用同一套界面代码）。 */
     const isFullWindow = () => {
