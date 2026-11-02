@@ -1238,6 +1238,7 @@ body[data-ds-dark-theme] .dshp-dock-body .rt-btn-primary,
 .dshp-purge-host,.dshp-rules-host{width:100%;max-width:1200px;margin:0 auto}
 .dshp-purge-host>.dshp-panel,.dshp-rules-host>.dshp-panel{max-width:none;width:100%;padding:0;border:0!important;border-radius:0;background:transparent!important;box-shadow:none!important}
 .dshp-page-section{margin:0 0 16px;padding:20px;border:1px solid var(--dshp-line);border-radius:20px;background:var(--dshp-paper)}
+@media (max-width:599px){.dshp-page-section{padding:16px}}
 .dshp-page-section .dshp-head{margin-bottom:12px}
 .dshp-root[data-page="overview"] [data-page-section]:not([data-page-section="overview"]),
 .dshp-root[data-page="clean"] [data-page-section]:not([data-page-section="clean"]),
