@@ -1247,6 +1247,7 @@ body[data-ds-dark-theme] .dshp-dock-body .rt-btn-primary,
 .dshp-root:not([data-page="rules"]) .dshp-rules-host{display:none!important}
 .dshp-rules-host>.dshp-panel{padding:20px!important;border:1px solid var(--dshp-line)!important;border-radius:20px;background:var(--dshp-paper)!important}
 .dshp-page-section .dshp-area{min-height:320px}
+@media (max-width:599px){.dshp-page-section .dshp-area{min-height:240px}}
 .dshp-dock-body .dshp-root{padding:0!important;max-width:none!important;gap:0!important}
 @media (min-width:840px){
   .dshp-workspace{grid-template-columns:224px minmax(0,1fr)}
