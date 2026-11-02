@@ -4793,6 +4793,22 @@ body[data-ds-dark-theme] .rt-dock,body[data-ds-dark-theme] .rt-full,.dshp-dock[d
   padding:env(safe-area-inset-top,0px) env(safe-area-inset-right,0px)
     env(safe-area-inset-bottom,0px) env(safe-area-inset-left,0px);
 }
+
+/* Mobile split panes become stacked, independently scrollable sections. */
+@media (max-width:599px){
+  .rt-dock .rt-split,.rt-full .rt-split{
+    flex-direction:column;min-height:0;overflow:auto;overscroll-behavior:contain;
+  }
+  .rt-dock .rt-split>.rt-side,.rt-dock .rt-split>.rt-list,
+  .rt-full .rt-split>.rt-side,.rt-full .rt-split>.rt-list{
+    width:100%;max-width:none;max-height:28vh;min-height:0;flex:0 0 auto;
+    box-sizing:border-box;overflow:auto;border-right:0;border-bottom:1px solid var(--rt-line);
+    padding:8px;
+  }
+  .rt-dock .rt-split>.rt-main,.rt-full .rt-split>.rt-main{
+    flex:1 0 auto;min-width:0;min-height:260px;overflow:hidden;
+  }
+}
 `    /* ---------------------------------------------------------- 桥接与状态 */
     /** 是否在「全面浏览」独立窗口里（URL hash 标记，复用同一套界面代码）。 */
     const isFullWindow = () => {
