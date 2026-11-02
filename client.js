@@ -1594,6 +1594,32 @@ body[data-ds-dark-theme] .dshp-auth-mask,body[data-ds-dark-theme] .dshp-restart-
  .dshp-dock-body .dshp-edition .dshp-ver{grid-area:sel}
  .dshp-dock-body .dshp-edition .dshp-btn{grid-area:btn}
 }
+/* Keep the dock's compact patch table independent from workspace card rows. */
+.dshp-dock-body .dshp-table{display:table;width:100%;border-collapse:collapse;table-layout:fixed}
+.dshp-dock-body .dshp-table thead{
+ position:static;width:auto;height:auto;padding:0;margin:0;overflow:visible;
+ clip:auto;white-space:normal;border:0;
+}
+.dshp-dock-body .dshp-table tbody{display:table-row-group;gap:0}
+.dshp-dock-body .dshp-table tbody tr{
+ display:table-row;padding:0;border:0;border-radius:0;background:transparent;
+}
+.dshp-dock-body .dshp-table tbody td{
+ display:table-cell;padding:5px 6px;border-bottom:1px solid var(--dshp-line);
+ vertical-align:middle;
+}
+.dshp-dock-body .dshp-table tbody td:first-child{
+ grid-area:auto;width:28%;font-size:inherit;line-height:16px;
+}
+.dshp-dock-body .dshp-table tbody td:nth-child(2){
+ grid-area:auto;width:42%;font-size:inherit;line-height:16px;
+}
+.dshp-dock-body .dshp-table tbody td:last-child{
+ grid-area:auto;justify-self:auto;align-self:middle;padding-left:6px;
+}
+.dshp-dock-body .dshp-btn{min-height:48px}
+.dshp-dock-body .dshp-group-h{flex-wrap:nowrap;align-items:center}
+.dshp-dock-body .dshp-count{flex:0 0 auto;white-space:nowrap;overflow-wrap:normal;text-align:right}
 
 `;
 
