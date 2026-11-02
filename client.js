@@ -1272,6 +1272,7 @@ body[data-ds-dark-theme] .dshp-dock-body .rt-btn-primary,
   .dshp-workspace-header h2{font-size:18px}
   .dshp-workspace-content{padding:12px 10px}
   .dshp-page-section{padding:14px;border-radius:16px;margin-bottom:12px}
+  .dshp-page-section .dshp-btn{min-height:44px}
   .dshp-group-h{flex-wrap:wrap;align-items:flex-start;gap:4px 8px}
   .dshp-group-h strong{flex:0 0 auto}
   .dshp-count{flex:1 1 100%;white-space:normal;overflow-wrap:anywhere;line-height:16px;text-align:right}
@@ -1439,6 +1440,7 @@ body[data-ds-dark-theme] .dshp-auth-mask,body[data-ds-dark-theme] .dshp-restart-
   .dshp-rules-host .dshp-create-row .dshp-field{flex:1 1 150px;min-width:0}
 }
 @media (max-width:599px){
+  .dshp-rules-host .dshp-btn{min-height:44px}
   .dshp-rules-host .dshp-policy-row{align-items:stretch;flex-direction:column}
   .dshp-rules-host .dshp-policy-row .dshp-field{width:100%;min-width:0}
   .dshp-rules-host .dshp-create-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
