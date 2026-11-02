@@ -1375,6 +1375,40 @@ body[data-ds-dark-theme] .dshp-auth-mask,body[data-ds-dark-theme] .dshp-restart-
 .dshp-auth-mask .dshp-auth-legal{background:var(--dshp-bg)!important;color:var(--dshp-ink)!important;border-color:var(--dshp-line)!important}
 .dshp-auth-mask .dshp-auth-warn{background:var(--dshp-accent-soft)!important;color:var(--dshp-ink)!important}
 
+/* Rules workspace: desktop gets a real list/editor split; compact layouts remain stacked. */
+@media (min-width:840px){
+  .dshp-rules-host .dshp-split{
+    display:grid;grid-template-columns:minmax(260px,.82fr) minmax(360px,1.18fr);
+    align-items:stretch;gap:16px;
+  }
+  .dshp-rules-host .dshp-rulelist{min-width:0;min-height:420px}
+  .dshp-rules-host .dshp-rulebody{max-height:min(58vh,680px);min-height:240px}
+  .dshp-rules-host .dshp-create-row{
+    display:grid;grid-template-columns:minmax(90px,.8fr) minmax(110px,1fr) auto auto;align-items:stretch;
+  }
+  .dshp-rules-host .dshp-editor{min-height:520px}
+  .dshp-rules-host .dshp-editor .dshp-area{min-height:360px}
+  .dshp-rules-host .dshp-editor .dshp-row{flex-wrap:wrap}
+  .dshp-rules-host .dshp-editor .dshp-field{min-width:0;flex:1 1 180px}
+}
+@media (min-width:600px) and (max-width:839px){
+  .dshp-rules-host .dshp-split{gap:12px}
+  .dshp-rules-host .dshp-rulebody{max-height:280px}
+  .dshp-rules-host .dshp-create-row{flex-wrap:wrap}
+  .dshp-rules-host .dshp-create-row .dshp-field{flex:1 1 150px;min-width:0}
+}
+@media (max-width:599px){
+  .dshp-rules-host .dshp-policy-row{align-items:stretch;flex-direction:column}
+  .dshp-rules-host .dshp-policy-row .dshp-field{width:100%;min-width:0}
+  .dshp-rules-host .dshp-create-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .dshp-rules-host .dshp-create-row .dshp-field{width:100%;min-width:0;grid-column:1/-1}
+  .dshp-rules-host .dshp-create-row .dshp-btn{min-height:48px}
+  .dshp-rules-host .dshp-ruleitem{align-items:flex-start;flex-wrap:wrap}
+  .dshp-rules-host .dshp-rule-ops{width:100%;justify-content:flex-end}
+  .dshp-rules-host .dshp-editor{min-height:360px;padding:10px}
+  .dshp-rules-host .dshp-editor .dshp-area{min-height:44vh;font-size:16px}
+}
+
 `;
 
 		function formatSize(bytes) {
