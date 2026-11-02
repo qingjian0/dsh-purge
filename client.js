@@ -1264,10 +1264,10 @@ body[data-ds-dark-theme] .dshp-dock-body .rt-btn-primary,
 @media (max-width:599px){
   .dshp-workspace{grid-template-columns:1fr;grid-template-rows:minmax(0,1fr) auto}
   .dshp-workspace-main{grid-row:1;min-height:0}
-  .dshp-workspace-nav{grid-row:2;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-rows:minmax(44px,auto);gap:4px;overflow:visible;padding:6px 8px calc(6px + env(safe-area-inset-bottom,0px));border-right:0;border-top:1px solid var(--dshp-line);border-bottom:0}
-  .dshp-workspace-nav-item{width:100%;min-width:0;min-height:44px;justify-content:center;padding:4px 3px;font-size:12px;line-height:16px;white-space:normal;text-align:center}
-  .dshp-workspace-nav-item:nth-last-child(2){grid-column:2}
-  .dshp-workspace-nav-item:last-child{grid-column:3}
+  .dshp-workspace-nav{grid-row:2;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));grid-auto-rows:minmax(44px,auto);gap:4px;overflow:visible;padding:6px 8px calc(6px + env(safe-area-inset-bottom,0px));border-right:0;border-top:1px solid var(--dshp-line);border-bottom:0}
+  .dshp-workspace-nav-item{grid-column:span 2;width:100%;min-width:0;min-height:44px;justify-content:center;padding:4px 3px;font-size:12px;line-height:16px;white-space:normal;text-align:center}
+  .dshp-workspace-nav-item:nth-last-child(2){grid-column:2 / span 2}
+  .dshp-workspace-nav-item:last-child{grid-column:4 / span 2}
   .dshp-workspace-header{padding:12px 14px}
   .dshp-workspace-header h2{font-size:18px}
   .dshp-workspace-content{padding:12px 10px}
@@ -1532,7 +1532,7 @@ body:has(.dshp-root[data-theme="dusk"]) .dshp-modal-bg,
  .dshp-workspace{grid-template-columns:1fr;grid-template-rows:minmax(0,1fr) auto}
  .dshp-workspace-main{grid-row:1;min-height:0}
  .dshp-workspace-nav{grid-row:2;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:minmax(34px,auto);gap:4px;overflow:visible;padding:6px 4px;border-right:0;border-top:1px solid var(--dshp-line);border-bottom:0}
- .dshp-workspace-nav-item{min-width:0;width:100%;min-height:36px;padding:0 3px;justify-content:center;text-align:center;font-size:10px;line-height:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;border-radius:9px}
+ .dshp-workspace-nav-item{grid-column:auto;min-width:0;width:100%;min-height:36px;padding:0 3px;justify-content:center;text-align:center;font-size:10px;line-height:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;border-radius:9px}
  /* The 3-column workspace centering rule must not pin Dock tabs in its 4-column grid. */
  .dshp-workspace-nav-item:nth-last-child(2),.dshp-workspace-nav-item:last-child{grid-column:auto}
  .dshp-workspace-header{padding:8px 10px;min-height:38px}
