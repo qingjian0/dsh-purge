@@ -1,3 +1,21 @@
+# Repository maintenance · 2026-11-02 (not a version release)
+
+## 中文
+
+- **响应式 UI 维护更新（已合入 master）**：清洗工作台五个区域（总览、清洗、提示词、规则、更新）补充窄屏布局；导航采用紧凑多行排列，内容区采用单列布局，卡片与表单支持自适应换行，常用控件适配触控。
+- **Dock 样式隔离**：普通工作台与 Dock 保持独立的导航、表格、按钮和编辑器尺寸；修复 Dock 动态视口下最小高度约束。
+- **红队演练台**：窄屏下调整分栏布局；复杂表格、评分和证据内容保留局部横向滚动，避免强行压缩列宽。
+- **验证状态**：完成源码级 CSS 与结构检查；本次维护未完成本地构建、跨宿主运行时验证或 Android 真机视觉回归。插件版本仍为 **1.1.88**，本记录不代表发布新版本。
+- **安装来源**：开发分支已合入 `master`；README、三语安装指南及 `package.json` 安装归档地址统一指向 `master`。
+
+## English
+
+- **Responsive UI maintenance (merged into master)**: the five Clean workspace sections (Overview, Clean, Prompt, Rules, Updates) now document narrow-screen behavior, including compact multi-row navigation, single-column content, wrapping cards/forms, and touch-friendly controls.
+- **Dock style isolation**: the main workspace and Dock retain separate navigation, table, button, and editor sizing; the Dock minimum-height constraint now follows the dynamic viewport.
+- **Red-team console**: narrow layouts adapt the split view while dense tables, scoring, and evidence retain local horizontal scrolling instead of forcing columns to shrink.
+- **Validation status**: source-level CSS and structure checks were performed. A local build, cross-host runtime verification, and Android real-device visual regression are not yet complete. The plugin version remains **1.1.88**; this maintenance entry is not a new release.
+- **Install source**: the development branch has been merged into `master`; README files, the three installation guides, and the `package.json` archive URLs now point to `master`.
+---
 # 1.1.88
 
 ## 中文
