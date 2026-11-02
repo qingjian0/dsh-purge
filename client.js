@@ -1262,8 +1262,8 @@ body[data-ds-dark-theme] .dshp-dock-body .rt-btn-primary,
 @media (max-width:599px){
   .dshp-workspace{grid-template-columns:1fr;grid-template-rows:minmax(0,1fr) auto}
   .dshp-workspace-main{grid-row:1;min-height:0}
-  .dshp-workspace-nav{grid-row:2;flex-direction:row;overflow-x:auto;gap:4px;padding:6px 8px calc(6px + env(safe-area-inset-bottom,0px));border-right:0;border-top:1px solid var(--dshp-line);border-bottom:0}
-  .dshp-workspace-nav-item{flex:1 0 72px;min-width:72px;min-height:52px;justify-content:center;padding:0 8px;font-size:12px}
+  .dshp-workspace-nav{grid-row:2;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-rows:minmax(44px,auto);gap:4px;overflow:visible;padding:6px 8px calc(6px + env(safe-area-inset-bottom,0px));border-right:0;border-top:1px solid var(--dshp-line);border-bottom:0}
+  .dshp-workspace-nav-item{width:100%;min-width:0;min-height:44px;justify-content:center;padding:4px 3px;font-size:12px;line-height:16px;white-space:normal;text-align:center}
   .dshp-workspace-header{padding:12px 14px}
   .dshp-workspace-header h2{font-size:18px}
   .dshp-workspace-content{padding:12px 10px}
