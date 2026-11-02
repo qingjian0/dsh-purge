@@ -1412,7 +1412,10 @@ body[data-ds-dark-theme] .dshp-dock-body .rt-btn-primary,
   --dshp-line:#D3E0E3;--dshp-fill:#E7F0F2;--dshp-accent:#315D67;--dshp-accent-soft:#D9E9F2;--dshp-glass:none;
 }
 body[data-ds-dark-theme] .dshp-auth-mask,body[data-ds-dark-theme] .dshp-restart-mask,body[data-ds-dark-theme] .dshp-modal-bg,
-.dshp-restart-mask[data-theme="dusk"]{
+body:has(.dshp-root[data-theme="dusk"]) .dshp-auth-mask,
+body:has(.dshp-root[data-theme="dusk"]) .dshp-restart-mask,
+body:has(.dshp-root[data-theme="dusk"]) .dshp-modal-bg,
+.dshp-auth-mask[data-theme="dusk"],.dshp-restart-mask[data-theme="dusk"],.dshp-modal-bg[data-theme="dusk"]{
   --dshp-paper:#1A2D33;--dshp-bg:#101F24;--dshp-ink:#E3F0F1;--dshp-mute:#A9BEC2;
   --dshp-line:#365159;--dshp-fill:#233C43;--dshp-accent:#B9E4D2;--dshp-accent-soft:#294A50;
 }
