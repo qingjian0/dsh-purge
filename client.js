@@ -1279,6 +1279,59 @@ body[data-ds-dark-theme] .rt-rep-step-no,.dshp-dock[data-theme="dusk"] .rt-rep-s
   .dshp-rules-host>.dshp-panel{padding:14px!important}
 }
 
+/* Freshwater hard override: keep the embedded console on the same opaque M3 surfaces. */
+.dshp-dock[data-theme="white"],.dshp-dock[data-theme="dusk"]{
+  --dshp-glass:none!important;
+  backdrop-filter:none!important;-webkit-backdrop-filter:none!important;
+}
+.dshp-dock[data-theme] .dshp-dock-body .rt-dock,
+.dshp-dock[data-theme] .dshp-dock-body .rt-card,
+.dshp-dock[data-theme] .dshp-dock-body .rt-sess,
+.dshp-dock[data-theme] .dshp-dock-body .rt-hit,
+.dshp-dock[data-theme] .dshp-dock-body .rt-cred,
+.dshp-dock[data-theme] .dshp-dock-body .rt-evi,
+.dshp-dock[data-theme] .dshp-dock-body .rt-kb,
+.dshp-dock[data-theme] .dshp-dock-body .rt-rep,
+.dshp-dock[data-theme] .dshp-dock-body .rt-flow-node,
+.dshp-dock[data-theme] .dshp-dock-body .rt-hcol,
+.dshp-dock[data-theme] .dshp-dock-body .rt-ap-hit,
+.dshp-dock[data-theme] .dshp-dock-body .rt-modal-box{
+  background:var(--dshp-paper)!important;border-color:var(--dshp-line)!important;
+  color:var(--dshp-ink)!important;box-shadow:none!important;
+  backdrop-filter:none!important;-webkit-backdrop-filter:none!important;
+}
+.dshp-dock[data-theme] .dshp-dock-body .rt-btn,
+.dshp-dock[data-theme] .dshp-dock-body .rt-input,
+.dshp-dock[data-theme] .dshp-dock-body .rt-eng-select,
+.dshp-dock[data-theme] .dshp-dock-body .rt-textarea,
+.dshp-dock[data-theme] .dshp-dock-body .rt-code,
+.dshp-dock[data-theme] .dshp-dock-body .rt-evi-body,
+.dshp-dock[data-theme] .dshp-dock-body .rt-rep-http{
+  background:var(--dshp-bg)!important;border-color:var(--dshp-line)!important;
+  color:var(--dshp-ink)!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;
+}
+.dshp-dock[data-theme] .dshp-dock-body .rt-row.head,
+.dshp-dock[data-theme] .dshp-dock-body .rt-score-row.head,
+.dshp-dock[data-theme] .dshp-dock-body .rt-vrow.head{
+  background:var(--dshp-paper)!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;
+}
+.dshp-dock[data-theme] .dshp-dock-body .rt-btn:focus-visible,
+.dshp-dock[data-theme] .dshp-dock-body .rt-input:focus-visible,
+.dshp-dock[data-theme] .dshp-dock-body .rt-tab:focus-visible,
+.dshp-dock[data-theme] .dshp-dock-body .rt-icon-btn:focus-visible,
+.dshp-dock[data-theme] .dshp-dock-body .rt-hbtn:focus-visible{
+  outline:2px solid var(--dshp-accent)!important;outline-offset:2px;
+}
+@media (max-width:599px){
+  .dshp-dock[data-theme] .dshp-dock-body .rt-btn,
+  .dshp-dock[data-theme] .dshp-dock-body .rt-input,
+  .dshp-dock[data-theme] .dshp-dock-body .rt-eng-select,
+  .dshp-dock[data-theme] .dshp-dock-body .rt-icon-btn,
+  .dshp-dock[data-theme] .dshp-dock-body .rt-hbtn{min-height:48px}
+  .dshp-dock[data-theme] .dshp-dock-body .rt-score-row{min-width:520px}
+  .dshp-dock[data-theme] .dshp-dock-body .rt-table{overflow-x:auto;overscroll-behavior-x:contain}
+}
+
 `;
 
 		function formatSize(bytes) {
