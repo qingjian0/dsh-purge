@@ -1522,6 +1522,9 @@ body[data-ds-dark-theme] .dshp-auth-mask,body[data-ds-dark-theme] .dshp-restart-
 .dshp-dock-body .dshp-group-h em{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .dshp-dock-body .dshp-btn{font-size:13px!important;line-height:18px!important;padding:6px 10px;min-height:36px}
 .dshp-dock-body .dshp-page-section .dshp-area{min-height:220px}
+/* Keep phone-sized workspace typography from enlarging the compact Dock editors. */
+.dshp-dock-body .dshp-page-section[data-page-section="prompt"] .dshp-area{font-size:13px;line-height:1.55}
+.dshp-dock-body .dshp-page-section[data-page-section="updates"] .dshp-ver{min-height:32px;height:32px;font-size:12px}
 @container dshp-workspace (max-width:560px){
  .dshp-workspace{grid-template-columns:1fr;grid-template-rows:minmax(0,1fr) auto}
  .dshp-workspace-main{grid-row:1;min-height:0}
