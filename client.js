@@ -1234,7 +1234,7 @@ body[data-ds-dark-theme] .rt-rep-step-no,.dshp-dock[data-theme="dusk"] .rt-rep-s
 .dshp-root{height:100%;max-width:none!important;padding:0!important;gap:0!important;overflow:hidden}
 .dshp-workspace{display:grid;grid-template-columns:216px minmax(0,1fr);width:100%;height:100%;min-height:0;flex:1;background:var(--dshp-bg)}
 .dshp-workspace-nav{display:flex;flex-direction:column;gap:6px;padding:18px 12px;background:var(--dshp-paper);border-right:1px solid var(--dshp-line);min-width:0}
-.dshp-workspace-nav-item{display:flex;align-items:center;width:100%;min-height:48px;padding:0 16px;border:0;border-radius:999px;background:transparent;color:var(--dshp-mute);font:500 14px/20px inherit;text-align:left;cursor:pointer}
+.dshp-workspace-nav-item{display:flex;align-items:center;width:100%;min-height:48px;padding:0 16px;border:0;border-radius:999px;background:transparent;color:var(--dshp-mute);font:500 14px/20px system-ui,-apple-system,"Segoe UI",sans-serif;text-align:left;cursor:pointer}
 .dshp-workspace-nav-item:hover{background:var(--dshp-fill);color:var(--dshp-ink)}
 .dshp-workspace-nav-item.is-active{background:var(--dshp-accent-soft);color:var(--dshp-accent);font-weight:700}
 .dshp-workspace-nav-item:focus-visible{outline:2px solid var(--dshp-accent);outline-offset:2px}
