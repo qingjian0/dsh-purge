@@ -4817,6 +4817,34 @@ body[data-ds-dark-theme] .rt-dock,body[data-ds-dark-theme] .rt-full,.dshp-dock[d
   }
 }
 
+/* Compact viewport and IME-safe overlays: dialogs remain reachable on mobile. */
+@media (max-width:599px){
+  .rt-dock .rt-modal,.rt-full .rt-modal{
+    align-items:flex-start;justify-content:center;
+    padding:max(12px,env(safe-area-inset-top,0px))
+      max(12px,env(safe-area-inset-right,0px))
+      max(12px,env(safe-area-inset-bottom,0px))
+      max(12px,env(safe-area-inset-left,0px));
+    overflow:auto;overscroll-behavior:contain;
+  }
+  .rt-dock .rt-modal-box,.rt-full .rt-modal-box{
+    width:min(560px,100%);max-width:100%;
+    max-height:min(80vh,calc(100dvh - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px) - 24px));
+    min-height:0;box-sizing:border-box;overflow:auto;
+    overscroll-behavior:contain;-webkit-overflow-scrolling:touch;
+  }
+  .rt-dock .rt-shot-zoom,.rt-full .rt-shot-zoom{
+    padding:max(12px,env(safe-area-inset-top,0px))
+      max(12px,env(safe-area-inset-right,0px))
+      max(12px,env(safe-area-inset-bottom,0px))
+      max(12px,env(safe-area-inset-left,0px));
+  }
+  .rt-dock .rt-shot-zoom img,.rt-full .rt-shot-zoom img{
+    max-width:100%;max-height:calc(100dvh - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px) - 72px);
+    object-fit:contain;
+  }
+}
+ 
 /* Keyboard focus is visible for every interactive control in both RedTeam shells. */
 .rt-dock :is(button,[role="button"],input,select,textarea):focus-visible,
 .rt-full :is(button,[role="button"],input,select,textarea):focus-visible{
