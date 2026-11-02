@@ -4014,13 +4014,14 @@ body[data-ds-dark-theme] .dshp-rewind-item span{color:var(--dsw-alias-label-tert
     const CSS = `
 .rt-dock{position:fixed;top:12px;right:12px;z-index:20;display:flex;flex-direction:column;box-sizing:border-box;
   --rt-ease:cubic-bezier(.22,1,.36,1);
-  --rt-paper:color-mix(in srgb,var(--dsw-alias-bg-layer-1,#fffcf7) 46%,transparent);
-  --rt-paper-2:color-mix(in srgb,var(--dsw-alias-bg-layer-2,#f3f0e8) 38%,transparent);
-  --rt-well:color-mix(in srgb,var(--dsw-alias-bg-layer-1,#fff) 32%,transparent);
-  --rt-fill:color-mix(in srgb,var(--dsw-alias-brand-primary,#6dbf8c) 14%,transparent);
-  --rt-line:color-mix(in srgb,var(--dsw-alias-brand-primary,#6d8f78) 34%,transparent);
-  --rt-line-2:color-mix(in srgb,var(--dsw-alias-brand-primary,#6d8f78) 50%,transparent);
-  --rt-hi:color-mix(in srgb,#fff 42%,transparent);
+  /* Opaque Material 3 surfaces: use host semantic layers as the base, never transparent glass. */
+  --rt-paper:var(--dsw-alias-bg-layer-1,#fffcf7);
+  --rt-paper-2:var(--dsw-alias-bg-layer-2,#f3f0e8);
+  --rt-well:var(--dsw-alias-bg-layer-1,#fff);
+  --rt-fill:color-mix(in srgb,var(--dsw-alias-brand-primary,#6dbf8c) 14%,var(--rt-paper));
+  --rt-line:color-mix(in srgb,var(--dsw-alias-brand-primary,#6d8f78) 34%,var(--rt-paper));
+  --rt-line-2:color-mix(in srgb,var(--dsw-alias-brand-primary,#6d8f78) 50%,var(--rt-paper));
+  --rt-hi:color-mix(in srgb,#fff 42%,var(--rt-paper));
   --rt-ink:var(--dsw-alias-label-primary,#16140f);
   --rt-mute:color-mix(in srgb,var(--dsw-alias-label-primary,#16140f) 72%,var(--dsw-alias-label-secondary,#5c564c));
   --rt-accent:var(--dsw-alias-brand-primary,#3d8f68);
