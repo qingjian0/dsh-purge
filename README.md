@@ -58,7 +58,7 @@ The author's personal channel: [t.me/LLM_PoJia](https://t.me/LLM_PoJia). Notes a
 
 ## What this is
 
-**dsh-purge** is a cybersecurity red-team plugin for the official [DeepSeek Harness](https://www.deepseek.com/harness/) already installed on your machine. This fork preview is **1.1.88**. The inherited upstream compatibility baseline is **DSH 0.2.1-rc.2** (0.2.0 is also documented as working); **DSH 0.2.1-rc.3 and newer RCs are not listed as supported**. The UI changes in this fork have not yet been runtime-verified across host versions. Official **Web** (`dsh web`) and the official **desktop EXE** are separate installs and must be applied separately.
+**dsh-purge** is a cybersecurity red-team plugin for the official [DeepSeek Harness](https://www.deepseek.com/harness/) already installed on your machine. This fork preview is **1.1.88**. The inherited upstream compatibility baseline is **DSH 0.2.1-rc.2** (0.2.0 is also documented as working); **DSH 0.2.1-rc.3 and newer RCs are not listed as supported**. The responsive UI updates are documented below; cross-host runtime and real-device visual verification are still pending. Official **Web** (`dsh web`) and the official **desktop EXE** are separate installs and must be applied separately.
 
 Harness does more than forward a prompt. It rewrites prompts, approval gates, sandbox policy, and session migration at runtime. Asking only “will the model answer” treats a host-layer block as a model refusal. This plugin separates those two layers on your own install, for controlled evaluation and for seeing which default policy is too tight.
 
@@ -145,7 +145,7 @@ Unmatched patches stay pending or skipped; nothing is rewritten blindly.
 
 ## Install
 
-**Current fork preview:** these commands install `1.1.88` from the maintained development branch. The archive changes as commits are pushed; it is not an immutable release.
+**Current repository build:** these commands install the current `master` branch. The branch archive changes as commits are pushed; it is not an immutable, version-pinned release.
 
 ### Recommended: DSH CLI
 
@@ -153,10 +153,10 @@ Choose the profile for the host you actually use. Web and desktop are separate:
 
 ```sh
 # Official Web host
-dsh plugin --profile web add https://codeload.github.com/qingjian0/dsh-purge/tar.gz/refs/heads/adapt/android-mobile-upstream-1.1.88
+dsh plugin --profile web add https://codeload.github.com/qingjian0/dsh-purge/tar.gz/refs/heads/master
 
 # Official desktop host
-dsh plugin --profile desktop add https://codeload.github.com/qingjian0/dsh-purge/tar.gz/refs/heads/adapt/android-mobile-upstream-1.1.88
+dsh plugin --profile desktop add https://codeload.github.com/qingjian0/dsh-purge/tar.gz/refs/heads/master
 ```
 
 ### Alternative: pnpm
@@ -165,14 +165,14 @@ Use only if the DSH CLI is unavailable. Run inside the selected profile:
 
 ```sh
 cd "$DSH_HOME/profiles/web"   # desktop: profiles/desktop
-pnpm add --allow-build=dsh-purge https://codeload.github.com/qingjian0/dsh-purge/tar.gz/refs/heads/adapt/android-mobile-upstream-1.1.88
+pnpm add --allow-build=dsh-purge https://codeload.github.com/qingjian0/dsh-purge/tar.gz/refs/heads/master
 ```
 
 Windows PowerShell:
 
 ```powershell
 cd "$env:USERPROFILE\.dsh\profiles\web"   # desktop: profiles\desktop
-pnpm add --allow-build=dsh-purge "https://codeload.github.com/qingjian0/dsh-purge/tar.gz/refs/heads/adapt/android-mobile-upstream-1.1.88"
+pnpm add --allow-build=dsh-purge "https://codeload.github.com/qingjian0/dsh-purge/tar.gz/refs/heads/master"
 ```
 
 The install hook registers the plugin in the selected profile and ensures its Cordis body insert. The pnpm flag allows this package's install hook when build scripts are blocked by default.
@@ -206,7 +206,7 @@ For the complete procedure and update instructions, see the [installation guide]
 
 ## Preview
 
-**dsh-purge** sits beside the session title. It opens a right-hand dock with two pages: **Clean** and **Drill**. Switch **Light / Ink**. Patches are grouped; the count only includes items that actually applied. Rule sets sit in a list above the editor, with Enable and Delete on each row.
+**dsh-purge** sits beside the session title and opens a right-hand dock with **Clean** and **Drill**. Within Clean, the workspace has five sections: **Overview**, **Clean**, **Prompt**, **Rules**, and **Updates**. The interface adapts to narrow screens with compact multi-row navigation, single-column content, wrapping forms and cards, and touch-friendly controls. Dense tables and red-team evidence retain horizontal scrolling rather than squeezing columns; the dock keeps its own compact layout. Switch **Light / Ink**. Patches are grouped; the count only includes items that actually applied. Rule sets sit in a list above the editor, with Enable and Delete on each row.
 
 The first time you open Drill you read the notice, wait out the countdown, scroll to the end, and check three boxes. Clean does not need that step. Drill is only for a host you manage, an offline target, or an exercise that already has written authorization.
 
