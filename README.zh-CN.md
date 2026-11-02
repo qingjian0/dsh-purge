@@ -58,7 +58,7 @@
 
 ## 介绍
 
-**dsh-purge** 是装在本机官方 [DeepSeek Harness](https://www.deepseek.com/harness/) 上的网络安全红队评测插件。当前 fork 开发预览版本为 **1.1.88**。下方适配范围沿用上游文档中的兼容性基线：**DSH 0.2.1-rc.2**（上游也记录 0.2.0 可用）；**DSH 0.2.1-rc.3 及更新的 rc 未列为支持版本**。本 fork 的 UI 改动尚未在所有宿主版本上完成运行时验收。官方 **Web**（`dsh web`）和官方 **桌面端**（EXE）分开安装、分开应用。
+**dsh-purge** 是装在本机官方 [DeepSeek Harness](https://www.deepseek.com/harness/) 上的网络安全红队评测插件。当前 fork 开发预览版本为 **1.1.88**。下方适配范围沿用上游文档中的兼容性基线：**DSH 0.2.1-rc.2**（上游也记录 0.2.0 可用）；**DSH 0.2.1-rc.3 及更新的 rc 未列为支持版本**。本次已加入响应式界面适配；跨宿主运行时验证和 Android 真机视觉回归仍待完成。官方 **Web**（`dsh web`）和官方 **桌面端**（EXE）分开安装、分开应用。
 
 Harness 不只是把问题交给模型。它还会在运行时改提示词、审批门、沙箱和会话格式。只看「模型答不答」，会把宿主拦截误当成模型拒绝。这个插件在你自己的安装里把这两层分开，用来做受控评测，也用来看默认策略该不该收紧。
 
@@ -147,7 +147,7 @@ Harness 不只是把问题交给模型。它还会在运行时改提示词、审
 
 ## 安装
 
-**当前 fork 开发预览版：** 以下命令安装维护分支上的 `1.1.88`。分支归档会随提交变化，不是不可变的正式 Release。
+**当前仓库版本：** 以下命令从 `master` 分支安装当前代码。分支归档会随提交变化，不是固定版本的正式 Release。
 
 ### 推荐方式：DSH CLI
 
@@ -155,10 +155,10 @@ Harness 不只是把问题交给模型。它还会在运行时改提示词、审
 
 ```sh
 # 官方 Web 端
-dsh plugin --profile web add https://codeload.github.com/qingjian0/dsh-purge/tar.gz/refs/heads/adapt/android-mobile-upstream-1.1.88
+dsh plugin --profile web add https://codeload.github.com/qingjian0/dsh-purge/tar.gz/refs/heads/master
 
 # 官方桌面端
-dsh plugin --profile desktop add https://codeload.github.com/qingjian0/dsh-purge/tar.gz/refs/heads/adapt/android-mobile-upstream-1.1.88
+dsh plugin --profile desktop add https://codeload.github.com/qingjian0/dsh-purge/tar.gz/refs/heads/master
 ```
 
 ### 备用方式：pnpm
@@ -167,14 +167,14 @@ dsh plugin --profile desktop add https://codeload.github.com/qingjian0/dsh-purge
 
 ```sh
 cd "$DSH_HOME/profiles/web"   # 桌面端：profiles/desktop
-pnpm add --allow-build=dsh-purge https://codeload.github.com/qingjian0/dsh-purge/tar.gz/refs/heads/adapt/android-mobile-upstream-1.1.88
+pnpm add --allow-build=dsh-purge https://codeload.github.com/qingjian0/dsh-purge/tar.gz/refs/heads/master
 ```
 
 Windows PowerShell：
 
 ```powershell
 cd "$env:USERPROFILE\.dsh\profiles\web"   # 桌面端：profiles\desktop
-pnpm add --allow-build=dsh-purge "https://codeload.github.com/qingjian0/dsh-purge/tar.gz/refs/heads/adapt/android-mobile-upstream-1.1.88"
+pnpm add --allow-build=dsh-purge "https://codeload.github.com/qingjian0/dsh-purge/tar.gz/refs/heads/master"
 ```
 
 安装脚本会把插件注册到当前 profile，并确保 Cordis body insert 存在。pnpm 参数只允许 dsh-purge 的安装脚本执行，适用于默认阻止依赖构建脚本的 pnpm 版本。
@@ -208,7 +208,7 @@ node node_modules/dsh-purge/scripts/ensure-profile-bundle.mjs
 
 ## 界面预览
 
-会话标题旁有 **dsh-purge**。点开是右侧栏，两页：**清洗** 和 **演练台**。白 / 墨可切换。补丁按组展开，进度只计真正已应用的项。规则集在上方列表启用或删除，下方编辑正文。
+会话标题旁有 **dsh-purge**。点开右侧栏后分为 **清洗** 和 **演练台** 两页；「清洗」工作台包含 **总览、清洗、提示词、规则、更新** 五个区域。窄屏下采用紧凑多行导航、单列内容、卡片与表单自适应换行及适合触控的控件尺寸。复杂表格和红队证据保留横向滚动，不强行挤压列宽；Dock 保持独立紧凑布局。支持白 / 墨主题切换。补丁按组展开，进度只计真正已应用的项。规则集在上方列表启用或删除，下方编辑正文。
 
 第一次进演练台要先读声明、等倒计时、滚到文末并勾选三项。清洗不需要这一步。演练台只用于你有权管理的本机、离线靶标，或已经书面授权的演练环境。
 
