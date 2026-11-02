@@ -16,6 +16,7 @@
 - **Validation status**: source-level CSS and structure checks were performed. A local build, cross-host runtime verification, and Android real-device visual regression are not yet complete. The plugin version remains **1.1.88**; this maintenance entry is not a new release.
 - **Install source**: the development branch has been merged into `master`; README files, the three installation guides, and the `package.json` archive URLs now point to `master`.
 ---
+
 # 1.1.88
 
 ## 中文
