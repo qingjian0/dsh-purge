@@ -1468,8 +1468,8 @@ body[data-ds-dark-theme] .dshp-auth-mask,body[data-ds-dark-theme] .dshp-restart-
 @container dshp-workspace (max-width:560px){
  .dshp-workspace{grid-template-columns:1fr;grid-template-rows:minmax(0,1fr) auto}
  .dshp-workspace-main{grid-row:1;min-height:0}
- .dshp-workspace-nav{grid-row:2;display:flex;flex-direction:row;gap:2px;overflow:hidden;padding:5px 4px;border-right:0;border-top:1px solid var(--dshp-line);border-bottom:0}
- .dshp-workspace-nav-item{flex:1 1 0;min-width:0;width:auto;min-height:38px;padding:0 2px;justify-content:center;text-align:center;font-size:10px;line-height:13px;white-space:nowrap;border-radius:9px}
+ .dshp-workspace-nav{grid-row:2;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:minmax(34px,auto);gap:4px;overflow:visible;padding:6px 4px;border-right:0;border-top:1px solid var(--dshp-line);border-bottom:0}
+ .dshp-workspace-nav-item{min-width:0;width:100%;min-height:36px;padding:0 3px;justify-content:center;text-align:center;font-size:10px;line-height:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;border-radius:9px}
  .dshp-workspace-header{padding:8px 10px;min-height:38px}
  .dshp-workspace-header h2{font-size:15px;line-height:20px}
  .dshp-workspace-content{padding:8px}
