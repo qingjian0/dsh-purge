@@ -127,6 +127,11 @@ window.__ModuleLoader__.load({ id: "dsh-purge", factory: (require) => {
 
 		const zh = {
 			nav: "规则设定",
+			"workspace.overview": "工作台",
+			"workspace.clean": "补丁清洗",
+			"workspace.prompt": "提示词",
+			"workspace.rules": "规则集",
+			"workspace.updates": "更新管理",
 			"dock.clean": "清洗",
 			"dock.drill": "演练台",
 			"dock.toggle": "dsh-purge",
@@ -488,6 +493,11 @@ window.__ModuleLoader__.load({ id: "dsh-purge", factory: (require) => {
 
 		const en = {
 			nav: "Rules",
+			"workspace.overview": "Overview",
+			"workspace.clean": "Patch cleaning",
+			"workspace.prompt": "Prompts",
+			"workspace.rules": "Rule sets",
+			"workspace.updates": "Updates",
 			"dock.clean": "Clean",
 			"dock.drill": "Drill",
 			"dock.toggle": "dsh-purge",
@@ -1220,6 +1230,55 @@ body[data-ds-dark-theme] .rt-rep-step-no,.dshp-dock[data-theme="dusk"] .rt-rep-s
 }
 @media (prefers-reduced-motion:reduce){.dshp-dock *{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
 
+/* Responsive workbench navigation and page surfaces */
+.dshp-root{height:100%;max-width:none!important;padding:0!important;gap:0!important;overflow:hidden}
+.dshp-workspace{display:grid;grid-template-columns:216px minmax(0,1fr);width:100%;height:100%;min-height:0;flex:1;background:var(--dshp-bg)}
+.dshp-workspace-nav{display:flex;flex-direction:column;gap:6px;padding:18px 12px;background:var(--dshp-paper);border-right:1px solid var(--dshp-line);min-width:0}
+.dshp-workspace-nav-item{display:flex;align-items:center;width:100%;min-height:48px;padding:0 16px;border:0;border-radius:999px;background:transparent;color:var(--dshp-mute);font:500 14px/20px inherit;text-align:left;cursor:pointer}
+.dshp-workspace-nav-item:hover{background:var(--dshp-fill);color:var(--dshp-ink)}
+.dshp-workspace-nav-item.is-active{background:var(--dshp-accent-soft);color:var(--dshp-accent);font-weight:700}
+.dshp-workspace-nav-item:focus-visible{outline:2px solid var(--dshp-accent);outline-offset:2px}
+.dshp-workspace-main{display:flex;flex-direction:column;min-width:0;min-height:0;overflow:hidden}
+.dshp-workspace-header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 28px;background:var(--dshp-bg);border-bottom:1px solid var(--dshp-line)}
+.dshp-workspace-header h2{margin:0;color:var(--dshp-ink);font-size:22px;font-weight:700;line-height:28px}
+.dshp-workspace-content{flex:1;min-width:0;min-height:0;overflow:auto;padding:24px 28px}
+.dshp-purge-host,.dshp-rules-host{width:100%;max-width:1200px;margin:0 auto}
+.dshp-purge-host>.dshp-panel,.dshp-rules-host>.dshp-panel{max-width:none;width:100%;padding:0;border:0!important;border-radius:0;background:transparent!important;box-shadow:none!important}
+.dshp-page-section{margin:0 0 16px;padding:20px;border:1px solid var(--dshp-line);border-radius:20px;background:var(--dshp-paper)}
+.dshp-page-section .dshp-head{margin-bottom:12px}
+.dshp-root[data-page="overview"] [data-page-section]:not([data-page-section="overview"]),
+.dshp-root[data-page="clean"] [data-page-section]:not([data-page-section="clean"]),
+.dshp-root[data-page="prompt"] [data-page-section]:not([data-page-section="prompt"]),
+.dshp-root[data-page="updates"] [data-page-section]:not([data-page-section="updates"]){display:none!important}
+.dshp-root[data-page="rules"] .dshp-purge-host{display:none!important}
+.dshp-root:not([data-page="rules"]) .dshp-rules-host{display:none!important}
+.dshp-rules-host>.dshp-panel{padding:20px!important;border:1px solid var(--dshp-line)!important;border-radius:20px;background:var(--dshp-paper)!important}
+.dshp-page-section .dshp-area{min-height:320px}
+.dshp-dock-body .dshp-root{padding:0!important;max-width:none!important;gap:0!important}
+@media (min-width:840px){
+  .dshp-workspace{grid-template-columns:224px minmax(0,1fr)}
+  .dshp-workspace-content{padding:28px 36px}
+}
+@media (min-width:600px) and (max-width:839px){
+  .dshp-workspace{grid-template-columns:1fr;grid-template-rows:auto minmax(0,1fr)}
+  .dshp-workspace-nav{flex-direction:row;overflow-x:auto;border-right:0;border-bottom:1px solid var(--dshp-line);padding:8px 12px}
+  .dshp-workspace-nav-item{width:auto;flex:0 0 auto;min-width:112px;justify-content:center}
+  .dshp-workspace-header{padding:14px 18px}
+  .dshp-workspace-content{padding:16px}
+}
+@media (max-width:599px){
+  .dshp-workspace{grid-template-columns:1fr;grid-template-rows:minmax(0,1fr) auto}
+  .dshp-workspace-main{grid-row:1;min-height:0}
+  .dshp-workspace-nav{grid-row:2;flex-direction:row;overflow-x:auto;gap:4px;padding:6px 8px calc(6px + env(safe-area-inset-bottom,0px));border-right:0;border-top:1px solid var(--dshp-line);border-bottom:0}
+  .dshp-workspace-nav-item{flex:1 0 72px;min-width:72px;min-height:52px;justify-content:center;padding:0 8px;font-size:12px}
+  .dshp-workspace-header{padding:12px 14px}
+  .dshp-workspace-header h2{font-size:18px}
+  .dshp-workspace-content{padding:12px 10px}
+  .dshp-page-section{padding:14px;border-radius:16px;margin-bottom:12px}
+  .dshp-page-section .dshp-area{min-height:52vh}
+  .dshp-rules-host>.dshp-panel{padding:14px!important}
+}
+
 `;
 
 		function formatSize(bytes) {
@@ -1625,7 +1684,7 @@ body[data-ds-dark-theme] .rt-rep-step-no,.dshp-dock[data-theme="dusk"] .rt-rep-s
 			return node;
 		}
 
-		function PurgifySection() {
+		function PurgifySection(props) {
 			useEffect(() => () => stopRestartPolling(), []);
 			const t = useT();
 			const tRef = useRef(t);
@@ -2207,10 +2266,14 @@ body[data-ds-dark-theme] .rt-rep-step-no,.dshp-dock[data-theme="dusk"] .rt-rep-s
 				);
 			};
 			return h("section", { className: "dshp-panel", "aria-label": t("purge.title") },
+				h("div", { className: "dshp-page-section", "data-page-section": "overview" },
 				h("div", { className: "dshp-head" },
 					h("h3", { className: "dshp-title" }, t("purge.title")),
 					h("span", { className: "dshp-pill" }, t("surface." + hostSurface)),
 				),
+
+				),
+				h("div", { className: "dshp-page-section", "data-page-section": "updates" },
 				h("div", { className: "dshp-rel" },
 					h("div", { className: "dshp-now" },
 						h("span", { className: "dshp-now-label" }, t("channel.local")),
@@ -2222,6 +2285,8 @@ body[data-ds-dark-theme] .rt-rep-step-no,.dshp-dock[data-theme="dusk"] .rt-rep-s
 						renderEdition("beta"),
 					),
 					noticeNode(updateNotice),
+				),
+
 				),
 				s ? h("div", { className: "dshp-metrics" },
 					h("div", { className: "dshp-metric" },
@@ -2249,6 +2314,7 @@ body[data-ds-dark-theme] .rt-rep-step-no,.dshp-dock[data-theme="dusk"] .rt-rep-s
 				),
 				h(ApplyFlow, { progress: s && s.apply_progress, busy: patchBusy || uninstallBusy, t: t }),
 				h("div", { className: "dshp-bar", "aria-hidden": "true" }, h("i", { style: { transform: "scaleX(" + (pct / 100) + ")" } })),
+				h("div", { className: "dshp-page-section", "data-page-section": "clean" },
 				h(PatchGroups, { state: s }),
 				h(HooksDenySection, { onSaved: loadAll }),
 				h("div", { className: "dshp-row", style: { marginTop: 12 } },
@@ -2291,6 +2357,9 @@ body[data-ds-dark-theme] .rt-rep-step-no,.dshp-dock[data-theme="dusk"] .rt-rep-s
 					},
 				}) : null,
 				// h(ContinueRetrySection, null),
+
+				),
+				h("div", { className: "dshp-page-section", "data-page-section": "prompt" },
 				h("div", { className: "dshp-sub" },
 					h("h4", null, t("override.title")),
 					h("div", { className: "dshp-row", style: { margin: 0 } },
@@ -2318,6 +2387,8 @@ body[data-ds-dark-theme] .rt-rep-step-no,.dshp-dock[data-theme="dusk"] .rt-rep-s
 					h("h4", null, t("own.title")),
 				),
 				h("p", { className: "dshp-hint", style: { margin: "8px 0 0", color: "var(--dshp-mute)", fontSize: 12 } }, t("own.hint")),
+
+				),
 			);
 		}
 
@@ -3080,6 +3151,8 @@ body[data-ds-dark-theme] .rt-rep-step-no,.dshp-dock[data-theme="dusk"] .rt-rep-s
 			useEffect(() => () => stopRestartPolling(), []);
 			const t = typeof props.t === "function" ? props.t : ((key) => key);
 			const [theme, setTheme] = useState(readTheme);
+			const [activePage, setActivePage] = useState("overview");
+			const navItems = ["overview", "clean", "prompt", "rules", "updates"];
 			useEffect(() => {
 				let cancelled = false;
 				let timer = 0;
@@ -3110,10 +3183,28 @@ body[data-ds-dark-theme] .rt-rep-step-no,.dshp-dock[data-theme="dusk"] .rt-rep-s
 				};
 			}, []);
 			translate = t;
-			return h("div", { className: "dshp-root", "data-theme": theme },
+			return h("div", { className: "dshp-root", "data-theme": theme, "data-page": activePage },
 				h("style", null, PURGE_CSS),
-				h(PurgifySection, null),
-				h(RulesSection, null),
+				h("div", { className: "dshp-workspace" },
+					h("nav", { className: "dshp-workspace-nav", role: "navigation", "aria-label": t("nav") },
+						navItems.map((id) => h("button", {
+							key: id, type: "button",
+							className: "dshp-workspace-nav-item" + (activePage === id ? " is-active" : ""),
+							"aria-current": activePage === id ? "page" : undefined,
+							onClick: () => setActivePage(id),
+						}, t("workspace." + id))),
+					),
+					h("main", { className: "dshp-workspace-main" },
+						h("header", { className: "dshp-workspace-header" },
+							h("h2", null, t("workspace." + activePage)),
+							h("span", { className: "dshp-pill" }, "dsh-purge"),
+						),
+						h("div", { className: "dshp-workspace-content" },
+							h("div", { className: "dshp-purge-host" }, h(PurgifySection, { activePage: activePage })),
+							h("div", { className: "dshp-rules-host" }, h(RulesSection, null)),
+						),
+					),
+				),
 			);
 		}
 
