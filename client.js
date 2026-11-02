@@ -4094,8 +4094,8 @@ body[data-ds-dark-theme] .dshp-rewind-item span{color:var(--dsw-alias-label-tert
 .rt-kv b{color:var(--dsw-alias-label-primary);font-weight:600;min-width:64px;flex:none}
 /* 图谱视图已移除（见 AssetsTab：资产关系由「域名维度」与 redteam_attack_path 工具承担） */
 .rt-pane{flex:1;min-height:0;overflow:auto;padding:12px}
-.rt-card{border:1px solid color-mix(in srgb,var(--dsw-alias-border-l1,#444) 75%,transparent);border-radius:8px;padding:10px;margin-bottom:10px;
-  background:color-mix(in srgb,var(--dsw-alias-bg-layer-2,#2a2a2a) 48%,transparent);backdrop-filter:none;backdrop-filter:none;font-size:13px}
+.rt-card{border:1px solid var(--rt-line);border-radius:8px;padding:10px;margin-bottom:10px;
+  background:var(--rt-paper-2);backdrop-filter:none;font-size:13px}
 .rt-textarea{width:100%;min-height:260px;background:var(--dsw-alias-bg-base);border:1px solid var(--dsw-alias-border-l1);
   color:inherit;border-radius:6px;padding:8px;font-size:12.5px;font-family:ui-monospace,Menlo,monospace;
   line-height:1.6;resize:vertical;outline:none;box-sizing:border-box}
@@ -4168,12 +4168,12 @@ body[data-ds-dark-theme] .dshp-rewind-item span{color:var(--dsw-alias-label-tert
 .rt-link:hover{text-decoration:underline}
 .rt-full{position:fixed;inset:0;z-index:60;display:flex;flex-direction:column;
   --rt-ease:cubic-bezier(.22,1,.36,1);
-  --rt-paper:color-mix(in srgb,var(--dsw-alias-bg-layer-1,#fffcf7) 46%,transparent);
-  --rt-paper-2:color-mix(in srgb,var(--dsw-alias-bg-layer-2,#f3f0e8) 38%,transparent);
-  --rt-well:color-mix(in srgb,var(--dsw-alias-bg-layer-1,#fff) 32%,transparent);
-  --rt-fill:color-mix(in srgb,var(--dsw-alias-brand-primary,#6dbf8c) 14%,transparent);
-  --rt-line:color-mix(in srgb,var(--dsw-alias-brand-primary,#6d8f78) 34%,transparent);
-  --rt-hi:color-mix(in srgb,#fff 42%,transparent);
+  --rt-paper:var(--dsw-alias-bg-layer-1,#fffcf7);
+  --rt-paper-2:var(--dsw-alias-bg-layer-2,#f3f0e8);
+  --rt-well:var(--dsw-alias-bg-layer-1,#fff);
+  --rt-fill:color-mix(in srgb,var(--dsw-alias-brand-primary,#6dbf8c) 14%,var(--rt-paper));
+  --rt-line:color-mix(in srgb,var(--dsw-alias-brand-primary,#6d8f78) 34%,var(--rt-paper));
+  --rt-hi:color-mix(in srgb,#fff 42%,var(--rt-paper));
   --rt-ink:var(--dsw-alias-label-primary,#16140f);
   --rt-mute:color-mix(in srgb,var(--dsw-alias-label-primary,#16140f) 72%,var(--dsw-alias-label-secondary,#5c564c));
   --rt-accent:var(--dsw-alias-brand-primary,#3d8f68);
@@ -4575,10 +4575,10 @@ body[data-ds-dark-theme] .dshp-rewind-item span{color:var(--dsw-alias-label-tert
 .rt-shot-zoom-cap{color:#e5e7eb;font-size:12px;text-align:center;max-width:90vw;overflow-wrap:anywhere}
 body[data-ds-dark-theme] .rt-dock,body[data-ds-dark-theme] .rt-full,
 .dshp-dock[data-theme="dusk"] .rt-dock,.dshp-dock[data-theme="dusk"] .rt-full{
-  --rt-paper:color-mix(in srgb,var(--dsw-alias-bg-layer-1,#1c1e24) 42%,transparent);
-  --rt-paper-2:color-mix(in srgb,var(--dsw-alias-bg-layer-2,#1c1e24) 34%,transparent);
-  --rt-well:color-mix(in srgb,var(--dsw-alias-bg-layer-1,#1c1e24) 26%,transparent);
-  --rt-hi:color-mix(in srgb,#fff 10%,transparent);
+  --rt-paper:var(--dsw-alias-bg-layer-1,#1c1e24);
+  --rt-paper-2:var(--dsw-alias-bg-layer-2,#1c1e24);
+  --rt-well:var(--dsw-alias-bg-layer-1,#1c1e24);
+  --rt-hi:color-mix(in srgb,#fff 10%,var(--rt-paper));
   --rt-ink:var(--dsw-alias-label-primary,#f4f1ea);
   --rt-mute:color-mix(in srgb,var(--dsw-alias-label-primary,#f4f1ea) 78%,var(--dsw-alias-label-secondary,#c9c3b8));
   --rt-line:color-mix(in srgb,var(--dsw-alias-brand-primary,#6dbf8c) 32%,transparent);
