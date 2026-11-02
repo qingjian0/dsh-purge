@@ -1615,7 +1615,7 @@ body[data-ds-dark-theme] .dshp-auth-mask,body[data-ds-dark-theme] .dshp-restart-
  grid-area:auto;width:42%;font-size:inherit;line-height:16px;
 }
 .dshp-dock-body .dshp-table tbody td:last-child{
- grid-area:auto;justify-self:auto;align-self:middle;padding-left:6px;
+ grid-area:auto;justify-self:auto;align-self:auto;padding-left:6px;
 }
 .dshp-dock-body .dshp-btn{min-height:48px}
 .dshp-dock-body .dshp-group-h{flex-wrap:nowrap;align-items:center}
