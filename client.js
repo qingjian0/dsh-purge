@@ -4581,7 +4581,7 @@ body[data-ds-dark-theme] .rt-dock,body[data-ds-dark-theme] .rt-full,
   --rt-hi:color-mix(in srgb,#fff 10%,var(--rt-paper));
   --rt-ink:var(--dsw-alias-label-primary,#f4f1ea);
   --rt-mute:color-mix(in srgb,var(--dsw-alias-label-primary,#f4f1ea) 78%,var(--dsw-alias-label-secondary,#c9c3b8));
-  --rt-line:color-mix(in srgb,var(--dsw-alias-brand-primary,#6dbf8c) 32%,transparent);
+  --rt-line:color-mix(in srgb,var(--dsw-alias-brand-primary,#6dbf8c) 32%,var(--rt-paper));
   --rt-ok:#8fd0a8;--rt-warn:#e4c48a;--rt-bad:#f0b4b4;
   box-shadow:inset 0 1px 0 var(--rt-hi),0 16px 40px color-mix(in srgb,#000 28%,transparent)}
 .rt-card,.rt-sess,.rt-hit,.rt-cred,.rt-evi,.rt-kb,.rt-rep,.rt-flow-node,.rt-hflow-node,.rt-atest,.rt-hcol,.rt-ap-hit,.rt-rep-req,.rt-rep-trace,.rt-shots,.rt-modal-box{
