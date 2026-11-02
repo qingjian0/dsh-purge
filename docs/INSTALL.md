@@ -1,6 +1,6 @@
 # Install dsh-purge
 
-> **Preview build:** this guide installs the current development branch `adapt/android-mobile-upstream-1.1.88`. Branch archives change when new commits are pushed. Use a version tag only after a matching GitHub Release has been published.
+> **Current repository build:** this guide installs the current `master` branch. Branch archives change when new commits are pushed and are not immutable. Use a version tag only after a matching GitHub Release has been published.
 
 ## Before you install
 
@@ -15,10 +15,10 @@ Run only the command for the host you actually use:
 
 ```sh
 # Official Web host
-dsh plugin --profile web add https://codeload.github.com/qingjian0/dsh-purge/tar.gz/refs/heads/adapt/android-mobile-upstream-1.1.88
+dsh plugin --profile web add https://codeload.github.com/qingjian0/dsh-purge/tar.gz/refs/heads/master
 
 # Official desktop host
-dsh plugin --profile desktop add https://codeload.github.com/qingjian0/dsh-purge/tar.gz/refs/heads/adapt/android-mobile-upstream-1.1.88
+dsh plugin --profile desktop add https://codeload.github.com/qingjian0/dsh-purge/tar.gz/refs/heads/master
 ```
 
 If the command reports that the plugin is already installed, remove it from that same profile and run the add command again:
@@ -36,14 +36,14 @@ Use this only when the DSH CLI is unavailable. Run the command inside the profil
 
 ```sh
 cd "$DSH_HOME/profiles/web"   # desktop: profiles/desktop
-pnpm add --allow-build=dsh-purge https://codeload.github.com/qingjian0/dsh-purge/tar.gz/refs/heads/adapt/android-mobile-upstream-1.1.88
+pnpm add --allow-build=dsh-purge https://codeload.github.com/qingjian0/dsh-purge/tar.gz/refs/heads/master
 ```
 
 Windows PowerShell:
 
 ```powershell
 cd "$env:USERPROFILE\.dsh\profiles\web"   # desktop: profiles\desktop
-pnpm add --allow-build=dsh-purge "https://codeload.github.com/qingjian0/dsh-purge/tar.gz/refs/heads/adapt/android-mobile-upstream-1.1.88"
+pnpm add --allow-build=dsh-purge "https://codeload.github.com/qingjian0/dsh-purge/tar.gz/refs/heads/master"
 ```
 
 The `--allow-build=dsh-purge` option permits this package's install hook to run with pnpm versions that block dependency build scripts by default. If pnpm asks for build approval interactively, approve **dsh-purge only**. Do not approve unrelated packages.
