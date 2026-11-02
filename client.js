@@ -4998,6 +4998,36 @@ body[data-ds-dark-theme] .rt-dock,body[data-ds-dark-theme] .rt-full,.dshp-dock[d
  .dshp-dock-body .rt-dock .rt-row,.dshp-dock-body .rt-dock .rt-vrow,.dshp-dock-body .rt-dock .rt-score-row{min-width:0}
 }
 
+
+/* Final embedded-width overrides: these intentionally follow the legacy viewport rules above. */
+@container dshp-workspace (max-width:560px){
+ .dshp-dock-body .rt-dock .rt-split{flex-direction:column;min-height:0;overflow:auto;overscroll-behavior:contain}
+ .dshp-dock-body .rt-dock .rt-split>.rt-side,
+ .dshp-dock-body .rt-dock .rt-split>.rt-list{
+   width:100%;max-width:none;max-height:22vh;min-height:0;flex:0 0 auto;
+   box-sizing:border-box;overflow:auto;border-right:0;border-bottom:1px solid var(--rt-line);padding:6px
+ }
+ .dshp-dock-body .rt-dock .rt-split>.rt-main{flex:1 0 auto;min-width:0;min-height:150px;overflow:hidden}
+ .dshp-dock-body .rt-dock .rt-table{min-width:0;overflow-x:auto;overflow-y:auto;overscroll-behavior-x:contain}
+ .dshp-dock-body .rt-dock .rt-row{min-width:520px;grid-template-columns:130px 58px 84px minmax(120px,1fr) minmax(100px,1fr)}
+ .dshp-dock-body .rt-dock .rt-vrow{min-width:500px;grid-template-columns:54px minmax(150px,1.4fr) minmax(110px,1fr) minmax(100px,1fr) 70px 48px}
+ .dshp-dock-body .rt-dock .rt-score-row{min-width:0;grid-template-columns:14px 38px minmax(90px,1fr) 58px 38px}
+ .dshp-dock-body .rt-dock .rt-toolbar{display:flex;flex-wrap:wrap;min-width:0}
+ .dshp-dock-body .rt-dock .rt-toolbar>*{min-width:0;max-width:100%}
+ .dshp-dock-body .rt-dock .rt-textarea{min-height:180px;max-height:42vh}
+ .dshp-dock-body .rt-dock .rt-modal-box{width:100%;max-width:100%;box-sizing:border-box}
+ .dshp-dock-body .rt-dock .rt-kv{min-width:0;overflow-wrap:anywhere}
+ .dshp-dock-body .rt-dock .rt-kv b{min-width:0;max-width:38%;flex:0 0 38%}
+}
+@container dshp-workspace (min-width:561px) and (max-width:760px){
+ .dshp-dock-body .rt-dock .rt-side,.dshp-dock-body .rt-dock .rt-list{width:132px;flex:0 0 132px}
+ .dshp-dock-body .rt-dock .rt-row{grid-template-columns:120px 58px 80px minmax(100px,1fr) minmax(90px,1fr);gap:5px}
+ .dshp-dock-body .rt-dock .rt-vrow{grid-template-columns:54px minmax(120px,1.3fr) minmax(90px,1fr) minmax(90px,1fr) 64px 44px;gap:5px}
+ .dshp-dock-body .rt-dock .rt-score-row{grid-template-columns:14px 44px minmax(0,1fr) 72px 46px;gap:4px}
+ .dshp-dock-body .rt-dock .rt-toolbar{gap:4px;padding:6px}
+ .dshp-dock-body .rt-dock .rt-pane,.dshp-dock-body .rt-dock .rt-chain{padding:8px}
+}
+
 `    /* ---------------------------------------------------------- 桥接与状态 */
     /** 是否在「全面浏览」独立窗口里（URL hash 标记，复用同一套界面代码）。 */
     const isFullWindow = () => {
