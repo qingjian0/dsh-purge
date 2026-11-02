@@ -136,7 +136,7 @@ Harness は単にプロンプトを転送するだけではありません。プ
 
 - **dsh 0.2.1-rc.2**（公式デスクトップ / 公式 `dsh web`）: **1.1.81** を使用。`{{cwd}}` / `[cwd]` クラッシュ、patch #40 のマッチ、削除された `toolFilter`、ホスト `dsh-tools` の解決、hostFs の fd、デスクトップヘルパーの自己終了、`file:` アーカイブ更新、Ctrl+Enter ステアを修正。
 - **dsh 0.2.0-rc.2**: **1.1.40** 以降を使用。このラインもインストールできます。
-- **dsh 0.1.7**（rc.1 / rc.2 を含む）: **1.1.39** 以前を使用 — [Releases](https://github.com/YuJunZhiXue/dsh-purge/releases) で該当タグを選択。
+- **dsh 0.1.7**（rc.1 / rc.2 を含む）: **1.1.39** 以前を使用 — [Releases](https://github.com/qingjian0/dsh-purge/releases) で該当タグを選択。
 - **dsh 0.2.1-rc.3 / rc.4 以降は非対応です。** マッチしないパッチは pending または skipped のままで、盲目的な書き換えはしません。**0.2.1-rc.2** に留まってください。
 
 マッチしないパッチは pending または skipped のままで、盲目的な書き換えはしません。
@@ -408,7 +408,7 @@ Community Desktop はメンテナンスされていません。
 
 ## リリース
 
-作者の個人チャンネル: [t.me/LLM_PoJia](https://t.me/LLM_PoJia)。メモや更新情報はそこに出ます。GitHub [Releases](https://github.com/YuJunZhiXue/dsh-purge/releases) には古いパッケージもあります。オリジナルの転売は禁止、フォークは帰属表示が必須です。
+作者の個人チャンネル: [t.me/LLM_PoJia](https://t.me/LLM_PoJia)。メモや更新情報はそこに出ます。GitHub [Releases](https://github.com/qingjian0/dsh-purge/releases) には古いパッケージもあります。オリジナルの転売は禁止、フォークは帰属表示が必須です。
 
 ## 備考
 
