@@ -1,6 +1,6 @@
 # dsh-purge 安装指南
 
-> **当前为开发预览版安装方式：** 本指南安装开发分支 `adapt/android-mobile-upstream-1.1.88`。分支归档会随提交变化；只有对应 GitHub Release 正式发布后，才使用固定版本标签安装。
+> **当前仓库安装方式：** 本指南从 `master` 分支安装当前代码。分支归档会随提交变化，并非不可变版本；只有对应 GitHub Release 正式发布后，才使用固定版本标签安装。
 
 ## 安装前检查
 
@@ -15,10 +15,10 @@
 
 ```sh
 # 官方 Web 端
-dsh plugin --profile web add https://codeload.github.com/qingjian0/dsh-purge/tar.gz/refs/heads/adapt/android-mobile-upstream-1.1.88
+dsh plugin --profile web add https://codeload.github.com/qingjian0/dsh-purge/tar.gz/refs/heads/master
 
 # 官方桌面端
-dsh plugin --profile desktop add https://codeload.github.com/qingjian0/dsh-purge/tar.gz/refs/heads/adapt/android-mobile-upstream-1.1.88
+dsh plugin --profile desktop add https://codeload.github.com/qingjian0/dsh-purge/tar.gz/refs/heads/master
 ```
 
 如果提示插件已经存在，先在**同一个 profile** 中卸载，再重新执行对应的 add 命令：
@@ -36,14 +36,14 @@ dsh plugin --profile web remove dsh-purge
 
 ```sh
 cd "$DSH_HOME/profiles/web"   # 桌面端改为 profiles/desktop
-pnpm add --allow-build=dsh-purge https://codeload.github.com/qingjian0/dsh-purge/tar.gz/refs/heads/adapt/android-mobile-upstream-1.1.88
+pnpm add --allow-build=dsh-purge https://codeload.github.com/qingjian0/dsh-purge/tar.gz/refs/heads/master
 ```
 
 Windows PowerShell：
 
 ```powershell
 cd "$env:USERPROFILE\.dsh\profiles\web"   # 桌面端改为 profiles\desktop
-pnpm add --allow-build=dsh-purge "https://codeload.github.com/qingjian0/dsh-purge/tar.gz/refs/heads/adapt/android-mobile-upstream-1.1.88"
+pnpm add --allow-build=dsh-purge "https://codeload.github.com/qingjian0/dsh-purge/tar.gz/refs/heads/master"
 ```
 
 部分 pnpm 版本默认阻止依赖安装脚本。`--allow-build=dsh-purge` 只允许本插件的安装脚本执行。如果 pnpm 交互式询问构建权限，只批准 **dsh-purge**，不要顺手批准其他依赖。
