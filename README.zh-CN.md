@@ -138,7 +138,7 @@ Harness 不只是把问题交给模型。它还会在运行时改提示词、审
 
 - **dsh 0.2.1-rc.2**（官方桌面 / 官方 `dsh web`）：用 **1.1.81**。已修 `{{cwd}}` / `[cwd]` 整轮失败、补丁 #40 命中、`toolFilter` 废弃、`dsh-tools` 解析、hostFs fd、桌面换包自杀、`file:` 归档更新、Ctrl+Enter 插话。
 - **dsh 0.2.0-rc.2**：用 **1.1.40** 及以上；本页这档也能装。
-- **dsh 0.1.7**（含 rc.1 / rc.2）：用 **1.1.39** 及更早 —— 在 [Releases](https://github.com/YuJunZhiXue/dsh-purge/releases) 里选对应标签。
+- **dsh 0.1.7**（含 rc.1 / rc.2）：用 **1.1.39** 及更早 —— 在 [Releases](https://github.com/qingjian0/dsh-purge/releases) 里选对应标签。
 - **不支持 dsh 0.2.1-rc.3 / rc.4 及更新。** 宿主对不上时补丁会显示待应用或跳过，不会乱改文件。请退回 **0.2.1-rc.2** 再用本插件。
 
 对不上的补丁会显示待应用或跳过，不会乱改文件。
@@ -418,7 +418,7 @@ flowchart TD
 
 ## 更新
 
-作者个人频道：[t.me/LLM_PoJia](https://t.me/LLM_PoJia)。有话、有更新会发在那里。GitHub [Releases](https://github.com/YuJunZhiXue/dsh-purge/releases) 仍可下历史包。原版不允许倒卖；二开必须署名。
+作者个人频道：[t.me/LLM_PoJia](https://t.me/LLM_PoJia)。有话、有更新会发在那里。GitHub [Releases](https://github.com/qingjian0/dsh-purge/releases) 仍可下历史包。原版不允许倒卖；二开必须署名。
 
 ## 说明
 
