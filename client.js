@@ -4776,6 +4776,20 @@ body[data-ds-dark-theme] .rt-dock,body[data-ds-dark-theme] .rt-full,.dshp-dock[d
 .rt-dock .rt-shot-thumb,.rt-full .rt-shot-thumb{border-color:var(--rt-line)!important}
 .rt-dock .rt-shot-loading,.rt-full .rt-shot-loading{background:var(--rt-paper-2)!important}
 
+/* Remaining nested editors and rendered content use solid M3 container roles. */
+.rt-dock .rt-hit-evi,.rt-full .rt-hit-evi,
+.rt-dock .rt-atest-notes,.rt-full .rt-atest-notes,
+.rt-dock .rt-clip-body,.rt-full .rt-clip-body,
+.rt-dock .rt-kb-tpl-row,.rt-full .rt-kb-tpl-row,
+.rt-dock .rt-rep-step-cmd .rt-mono,.rt-full .rt-rep-step-cmd .rt-mono{
+  background:var(--rt-paper-2)!important;border-color:var(--rt-line)!important;color:var(--rt-ink)!important;
+  backdrop-filter:none!important;-webkit-backdrop-filter:none!important;
+}
+.rt-dock .rt-md,.rt-full .rt-md{
+  background:var(--rt-paper)!important;border-color:var(--rt-line)!important;color:var(--rt-ink)!important;
+  backdrop-filter:none!important;-webkit-backdrop-filter:none!important;
+}
+
 
 `    /* ---------------------------------------------------------- 桥接与状态 */
     /** 是否在「全面浏览」独立窗口里（URL hash 标记，复用同一套界面代码）。 */
