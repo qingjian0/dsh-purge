@@ -1684,7 +1684,7 @@ body[data-ds-dark-theme] .rt-rep-step-no,.dshp-dock[data-theme="dusk"] .rt-rep-s
 			return node;
 		}
 
-		function PurgifySection(props) {
+		function PurgifySection() {
 			useEffect(() => () => stopRestartPolling(), []);
 			const t = useT();
 			const tRef = useRef(t);
@@ -3203,7 +3203,7 @@ body[data-ds-dark-theme] .rt-rep-step-no,.dshp-dock[data-theme="dusk"] .rt-rep-s
 							h("span", { className: "dshp-pill" }, "dsh-purge"),
 						),
 						h("div", { className: "dshp-workspace-content" },
-							h("div", { className: "dshp-purge-host" }, h(PurgifySection, { activePage: activePage })),
+							h("div", { className: "dshp-purge-host" }, h(PurgifySection, null)),
 							h("div", { className: "dshp-rules-host" }, h(RulesSection, null)),
 						),
 					),
