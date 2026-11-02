@@ -1293,6 +1293,31 @@ body[data-ds-dark-theme] .dshp-dock-body .rt-btn-primary,
   .dshp-flow::-webkit-scrollbar-thumb{background:var(--dshp-line);border-radius:999px}
   .dshp-flow-node{flex:0 0 auto;scroll-snap-align:center}
   .dshp-flow-wire{flex:0 0 12px}
+  .dshp-table{display:block;width:100%;border-collapse:separate}
+  .dshp-table thead{
+    position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
+    clip:rect(0,0,0,0);white-space:nowrap;border:0;
+  }
+  .dshp-table tbody{display:grid;gap:8px}
+  .dshp-table tbody tr{
+    display:grid;grid-template-columns:minmax(0,1fr) auto;
+    grid-template-areas:"id status" "name status";
+    align-items:center;gap:4px 12px;box-sizing:border-box;
+    padding:10px 12px;border:1px solid var(--dshp-line);
+    border-radius:12px;background:var(--dshp-paper);
+  }
+  .dshp-table tbody td{min-width:0;padding:0;border:0;vertical-align:middle}
+  .dshp-table tbody td:first-child{
+    grid-area:id;width:auto;font-size:11px;line-height:14px;
+  }
+  .dshp-table tbody td:nth-child(2){
+    grid-area:name;font-size:13px;line-height:18px;
+    overflow-wrap:anywhere;word-break:normal;
+  }
+  .dshp-table tbody td:last-child{
+    grid-area:status;justify-self:end;align-self:center;padding-left:4px;
+  }
+  .dshp-table tbody td:last-child .dshp-pill{white-space:nowrap}
 }
 
 /* Freshwater hard override: keep the embedded console on the same opaque M3 surfaces. */
