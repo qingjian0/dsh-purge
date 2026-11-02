@@ -4816,10 +4816,8 @@ body[data-ds-dark-theme] .rt-dock,body[data-ds-dark-theme] .rt-full,.dshp-dock[d
   outline:2px solid var(--rt-accent)!important;outline-offset:2px;
 }
 
-/* Embedded RedTeam content must retain native touch scrolling on mobile. */
-@media (max-width:599px){
-  .rt-dock.rt-embedded{touch-action:auto}
-}
+/* Embedded RedTeam has no drag handles; preserve native touch scrolling on touch devices. */
+.rt-dock.rt-embedded{touch-action:auto}
 `    /* ---------------------------------------------------------- 桥接与状态 */
     /** 是否在「全面浏览」独立窗口里（URL hash 标记，复用同一套界面代码）。 */
     const isFullWindow = () => {
