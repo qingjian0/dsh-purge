@@ -1483,7 +1483,7 @@ body:has(.dshp-root[data-theme="dusk"]) .dshp-modal-bg,
 }
 
 /* Compact Workspace adaptive pass: size the dock independently from the host viewport. */
-.dshp-dock{width:var(--dshp-dock-w,60vw)!important;height:min(var(--dshp-dock-h,72vh),760px)!important;min-width:min(240px,calc(100vw - 16px))!important;min-height:260px!important;max-width:calc(100vw - 16px)!important;max-height:calc(100dvh - 24px)!important;border-radius:16px!important}
+.dshp-dock{width:var(--dshp-dock-w,60vw)!important;height:min(var(--dshp-dock-h,72vh),760px)!important;min-width:min(240px,calc(100vw - 16px))!important;min-height:min(260px,calc(100dvh - 24px))!important;max-width:calc(100vw - 16px)!important;max-height:calc(100dvh - 24px)!important;border-radius:16px!important}
 .dshp-dock-body{container-type:inline-size;container-name:dshp-workspace}
 .dshp-dock-body .dshp-root{padding:0!important;gap:0!important}
 .dshp-dock-body .dshp-page-section{padding:12px;margin:0 0 10px;border-radius:12px}
